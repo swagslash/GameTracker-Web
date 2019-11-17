@@ -8,6 +8,7 @@ import { reducers, metaReducers } from './reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CoreModule } from './core.module';
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CoreModule } from './core.module';
     }),
     BrowserAnimationsModule,
     CoreModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

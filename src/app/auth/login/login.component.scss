@@ -1,0 +1,13 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form > * {
+  width: 100%;
+}
+
+.sign-up-link {
+  text-decoration: none;
+  /* TODO color */
+}
