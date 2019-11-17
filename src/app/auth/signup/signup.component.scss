@@ -1,0 +1,13 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form > * {
+  width: 100%;
+}
+
+.login-link {
+  text-decoration: none;
+  /* TODO link color */
+}
