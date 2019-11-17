@@ -1,1 +1,13 @@
 <p>auth works!</p>
+
+<app-login
+  *ngIf="isLoginMode"
+  (loginClick)="onLogin($event)"
+  (signUpClick)="switchLoginMode()">
+</app-login>
+
+<app-signup
+  *ngIf="!isLoginMode"
+  (signUpClick)="onSignUp($event)"
+  (loginClick)="switchLoginMode()">
+</app-signup>
