@@ -14,7 +14,8 @@ interface AuthResponseData {
 }
 
 interface AuthRequestData {
-  email: string
+  username?: string;
+  email: string;
   password: string;
 }
 

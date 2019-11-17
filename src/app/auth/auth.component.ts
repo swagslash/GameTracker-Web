@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "./auth.service";
 import { LoginData } from "./login/login-data";
+import {SignUpData} from "./signup/sign-up-data";
 
 @Component({
   selector: 'app-auth',
@@ -11,10 +12,32 @@ export class AuthComponent implements OnInit {
 
   isLoginMode = true;
 
+  loginError: string;
+  signInError: string;
+
   constructor(private readonly authService: AuthService) {
   }
 
   ngOnInit() {
+  }
+
+  onSignUp(signUpData: SignUpData): void {
+    console.log('sign up');
+
+    // TODO username?
+    const signUp$ = this.authService.signup(signUpData.email, signUpData.password);
+
+    signUp$.subscribe(
+      (response: {}) => {
+        console.log('response', response);
+
+        // navigate to dashboard
+      },
+      (error) => {
+        console.log('error', error);
+        this.signInError = error;
+      }
+    );
   }
 
   onLogin(loginData: LoginData): void {
@@ -31,7 +54,7 @@ export class AuthComponent implements OnInit {
       (error) => {
         console.log('error', error);
       }
-    )
+    );
   }
 
   switchLoginMode(): void {
