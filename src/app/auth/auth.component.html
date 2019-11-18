@@ -8,5 +8,6 @@
 
 <app-signup
   *ngIf="!isLoginMode"
+  (signUpClick)="onSignUp($event)"
   (loginClick)="switchLoginMode()">
 </app-signup>
