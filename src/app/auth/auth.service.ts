@@ -5,19 +5,7 @@ import {RequestHelperService} from "../shared/request-helper.service";
 import {HttpMethod} from "../shared/http-method";
 import {LOGIN_PATH, SIGNUP_PATH} from "./authentication-paths";
 import {tap} from "rxjs/operators";
-
-interface AuthResponseData {
-  accessToken: string;
-  email: string;
-  userName: string;
-  // TODO
-}
-
-interface AuthRequestData {
-  username?: string;
-  email: string;
-  password: string;
-}
+import {User} from "../state/model/user";
 
 const USER_DATA = 'userData';
 
@@ -35,25 +23,26 @@ export class AuthService {
               private readonly requestHelper: RequestHelperService) {
   }
 
-  signup(email: string, password: string): Observable<AuthResponseData> {
-    const payload: AuthRequestData = {
+  signup(email: string, username: string, password: string): Observable<AuthResponseData> {
+    const payload: AuthSignUpRequestData = {
       email,
+      username,
       password,
     };
 
     return this.requestHelper.request(HttpMethod.POST, SIGNUP_PATH, payload).pipe(
-      tap(this.handleAuthentication),
+      tap((response: AuthResponseData) => this.handleAuthentication(response)),
     );
   }
 
   login(email: string, password: string): Observable<AuthResponseData> {
-    const payload: AuthRequestData = {
+    const payload: AuthLoginRequestData = {
       email,
       password,
     };
 
     return this.requestHelper.request(HttpMethod.POST, LOGIN_PATH, payload).pipe(
-      tap(this.handleAuthentication),
+      tap((response: AuthResponseData) => this.handleAuthentication(response)),
     );
   }
 
@@ -86,6 +75,12 @@ export class AuthService {
     }
   }
 
+  isLoggedIn(): boolean {
+    const userData = this.localStorage.getItem<User>(USER_DATA);
+
+    return userData !== undefined && userData.token !== undefined;
+  }
+
   private autoLogout(expirationDuration: number): void {
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
@@ -100,12 +95,15 @@ export class AuthService {
     const expiresIn = 1_000_000;
 
     // Create user entity
-    const user = {};
+    const user: User = {
+      ...response,
+    };
 
+    debugger;
     this.user$.next(user);
 
     this.autoLogout(expiresIn);
 
-    this.localStorage.setItem(USER_DATA, {});
+    this.localStorage.setItem(USER_DATA, user);
   }
 }

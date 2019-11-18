@@ -25,7 +25,7 @@ export class AuthComponent implements OnInit {
     console.log('sign up');
 
     // TODO username?
-    const signUp$ = this.authService.signup(signUpData.email, signUpData.password);
+    const signUp$ = this.authService.signup(signUpData.email, signUpData.username, signUpData.password);
 
     signUp$.subscribe(
       (response: {}) => {
