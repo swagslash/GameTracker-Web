@@ -6,6 +6,7 @@ export const SIGNUP_PATH = `${API_BASE_PATH}/signup`;
 // TODO redirect url to login page
 export const CLIENT_REDIRECT_URI = `/auth/login`;
 
+// Oauth path at server
 const OAUTH_BASE_PATH = '/oauth/authorize';
 
 export const GOOGLE_PATH = `${OAUTH_BASE_PATH}/google?redirect_uri=${CLIENT_REDIRECT_URI}`;
