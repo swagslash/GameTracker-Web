@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 
 // TODO: change any to User class
-const mapUserToHttpEvent = (user: any, request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> => {  
+const mapUserToHttpEvent = (user: any, request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> => {
   if (user === undefined) {
     return next.handle(request);
   }
@@ -18,7 +18,7 @@ const mapUserToHttpEvent = (user: any, request: HttpRequest<any>, next: HttpHand
   });
 
   return next.handle(modifiedRequest);
-}
+};
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
