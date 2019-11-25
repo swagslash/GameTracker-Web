@@ -3,7 +3,7 @@ import {select, Store} from "@ngrx/store";
 import {State} from "../reducers";
 import {AuthLoginRequestData, AuthSignUpRequestData} from "../model";
 import {autoLogin, login, signUp, unload} from "../actions/auth.actions";
-import {authenticatedUser, authenticationError, isLoading} from "../selectors/auth.selector";
+import {authenticatedUser, authenticationError, authenticationLoading} from "../selectors/auth.selector";
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +40,7 @@ export class AuthFacade {
     this.store.dispatch(unload());
   }
 
-  loading$ = this.store.pipe(select(isLoading));
+  loading$ = this.store.pipe(select(authenticationLoading));
   error$ = this.store.pipe(select(authenticationError));
   authenticatedUser$ = this.store.pipe(select(authenticatedUser));
 }

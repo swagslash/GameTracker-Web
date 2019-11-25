@@ -5,7 +5,6 @@ import {Observable} from "rxjs";
 import {HttpMethod} from "../../shared/http-method";
 import {LOGIN_PATH, SIGNUP_PATH} from "./paths";
 
-
 @Injectable({
   providedIn: 'root',
 })

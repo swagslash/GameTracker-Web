@@ -8,7 +8,7 @@ export const authenticatedUser = createSelector(
   (state: AuthState) => state.currentUser,
 );
 
-export const isLoading = createSelector(
+export const authenticationLoading = createSelector(
   getAuthState,
   (state: AuthState) => state.loading,
 );
