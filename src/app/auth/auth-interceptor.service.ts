@@ -1,36 +1,34 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { take, exhaustMap } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { AuthService } from './auth.service';
+import {HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {take, exhaustMap} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {AuthFacade} from "../store/facades/auth.facade";
+import {AuthResponseData} from "../store/model";
 
-// TODO: change any to User class
-const mapUserToHttpEvent = (user: any, request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> => {
-  if (user === undefined) {
-    return next.handle(request);
-  }
+const mapUserToHttpEvent =
+  (userData: AuthResponseData, request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> => {
+    if (userData === undefined) {
+      return next.handle(request);
+    }
 
-  const httpParams = new HttpParams();
-  httpParams.set('auth', user.token);
+    const httpParams = new HttpParams();
+    httpParams.set('auth', userData.accessToken);
 
-  const modifiedRequest = request.clone({
-    params: httpParams,
-  });
+    const modifiedRequest = request.clone({
+      params: httpParams,
+    });
 
-  return next.handle(modifiedRequest);
-};
+    return next.handle(modifiedRequest);
+  };
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
 
-  // TODO: change any to User class
-  private readonly authenticatedUser$: Observable<any> = this.authService.user$;
-
-  constructor(private authService: AuthService) {
+  constructor(private authFacade: AuthFacade) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return this.authenticatedUser$.pipe(
+    return this.authFacade.authenticatedUser$.pipe(
       take(1),
       exhaustMap((user) => mapUserToHttpEvent(user, request, next))
     );

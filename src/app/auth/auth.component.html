@@ -1,5 +1,9 @@
 <p>auth works!</p>
 
+<div *ngIf="authenticationError$ | async as authError">
+  <span i18n>{{ authError }}</span>
+</div>
+
 <app-login
   *ngIf="isLoginMode"
   (loginClick)="onLogin($event)"

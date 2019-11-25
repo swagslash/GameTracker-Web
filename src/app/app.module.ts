@@ -4,11 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CoreModule } from './core.module';
-import {SharedModule} from "./shared/shared.module";
+import { SharedModule } from "./shared/shared.module";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { environment } from "../environments/environment";
+import { reducers } from "./store/reducers";
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from "./store/effects/auth.effects";
 
 @NgModule({
   declarations: [
@@ -18,12 +22,17 @@ import {SharedModule} from "./shared/shared.module";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      }
+    StoreModule.forRoot(reducers,
+      {
+        runtimeChecks: {
+          strictStateImmutability: true,
+          strictActionImmutability: true
+        }
+      }),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
     }),
     BrowserAnimationsModule,
     CoreModule,
