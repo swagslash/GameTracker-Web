@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserFacade} from "./store/facades/user.facade";
-import {User} from "./store/model/user";
-import {take} from "rxjs/operators";
+import {AuthFacade} from "./store/facades/auth.facade";
 
 @Component({
   selector: 'app-root',
@@ -11,24 +9,23 @@ import {take} from "rxjs/operators";
 export class AppComponent implements OnInit{
   title = 'game-tracker-web';
 
-  constructor(private readonly userFacade: UserFacade) {
+  constructor(private readonly authFacade: AuthFacade) {
   }
 
   ngOnInit() {
-    const user: User = {
-      email: 'dkfslf',
-      username: 'sdfjsdklfjsdklfjklsdf',
-      token: 'iwas',
-      tokenType: 'bearer',
-      expiresIn: 123123,
-    };
-    this.userFacade.update(user);
-    this.userFacade.user$
-      .pipe(take(1))
-      .subscribe((user) => console.log(user));
-    this.userFacade.remove();
-    this.userFacade.user$
-      .pipe(take(1))
-      .subscribe((user) => console.log(user));
+    this.authFacade.loading$.subscribe((loading) => console.log('loading', loading));
+
+    this.authFacade.authenticatedUser$.subscribe((user) => console.log('user', user));
+
+    this.authFacade.error$.subscribe((error) => console.log('error', error));
+    //
+    // this.authFacade.login('hugo@pepe.com', '1234');
+
+    // this.authFacade.signUp('hugo@pepe.com', 'hugopepe', '1234');
+
+    // this.authFacade.logout();
+
+    // this.authFacade.autoLogin();
   }
+
 }
