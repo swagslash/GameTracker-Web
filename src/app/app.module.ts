@@ -13,11 +13,19 @@ import { environment } from "../environments/environment";
 import { reducers } from "./store/reducers";
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from "./store/effects/auth.effects";
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MainNavComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +45,12 @@ import { AuthEffects } from "./store/effects/auth.effects";
     BrowserAnimationsModule,
     CoreModule,
     SharedModule,
+    MatToolbarModule,
+    LayoutModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
