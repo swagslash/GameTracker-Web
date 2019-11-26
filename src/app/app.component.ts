@@ -7,7 +7,7 @@ import {AuthFacade} from "./store/facades/auth.facade";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'game-tracker-web';
+  title = 'Game Tracker';
 
   constructor(private readonly authFacade: AuthFacade) {
   }
