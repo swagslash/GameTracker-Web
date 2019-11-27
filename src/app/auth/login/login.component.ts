@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {LoginData} from "./login-data";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {LoginData} from './login-data';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +13,8 @@ export class LoginComponent {
   readonly passwordControl = new FormControl('', [Validators.required]);
 
   readonly loginForm = new FormGroup({
-    'email': this.emailControl,
-    'password': this.passwordControl,
+    email: this.emailControl,
+    password: this.passwordControl,
   });
 
   @Output() readonly loginClick = new EventEmitter<LoginData>();

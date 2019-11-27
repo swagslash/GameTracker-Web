@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { RouterModule } from '@angular/router';
-import { LANDING_PAGE_ROUTES } from './landing-page-routes';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {LANDING_PAGE_ROUTES} from './landing-page-routes';
 
 @NgModule({
   imports: [

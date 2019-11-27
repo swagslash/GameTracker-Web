@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {SignUpData} from "./sign-up-data";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {SignupData} from './signup-data';
 
 @Component({
   selector: 'app-signup',
@@ -16,17 +16,17 @@ export class SignupComponent {
   readonly confirmPasswordControl = new FormControl('', []);
 
   readonly signUpForm = new FormGroup({
-    'username': this.usernameControl,
-    'email': this.emailControl,
-    'password': this.passwordControl,
-    'confirm': this.confirmPasswordControl,
+    username: this.usernameControl,
+    email: this.emailControl,
+    password: this.passwordControl,
+    confirm: this.confirmPasswordControl,
   });
 
   @Output() readonly signUpClick = new EventEmitter();
   @Output() readonly loginClick = new EventEmitter<void>();
 
   onSubmit(): void {
-    const signUpData: SignUpData = this.signUpForm.value;
+    const signUpData: SignupData = this.signUpForm.value;
 
     this.signUpClick.emit(signUpData);
   }

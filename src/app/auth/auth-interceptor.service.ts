@@ -2,8 +2,8 @@ import {HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpParams} from '
 import {Observable} from 'rxjs';
 import {take, exhaustMap} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
-import {AuthFacade} from "../store/facades/auth.facade";
-import {AuthResponseData} from "../store/model";
+import {AuthFacade} from '../store/facades/auth.facade';
+import {AuthResponseData} from '../store/model';
 
 const mapUserToHttpEvent =
   (userData: AuthResponseData, request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> => {
