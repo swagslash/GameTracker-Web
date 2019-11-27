@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthComponent } from './auth.component';
-import {Component} from "@angular/core";
-import {instance, mock} from "ts-mockito";
-import {AuthFacade} from "../store/facades/auth.facade";
+import {Component} from '@angular/core';
+import {instance, mock} from 'ts-mockito';
+import {AuthFacade} from '../store/facades/auth.facade';
 
 @Component({selector: 'app-login', template: ''})
-class LoginComponentMock {
+class LoginMockComponent {
 }
 
 @Component({selector: 'app-signup', template: ''})
-class SignUpComponentMock {
+class SignUpMockComponent {
 }
 
 const authFacade = mock(AuthFacade);
@@ -23,8 +23,8 @@ describe('AuthComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AuthComponent,
-        LoginComponentMock,
-        SignUpComponentMock,
+        LoginMockComponent,
+        SignUpMockComponent,
       ],
       providers: [
         {provide: AuthFacade, useFactory: () => instance(authFacade)},
