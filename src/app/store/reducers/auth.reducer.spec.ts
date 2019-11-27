@@ -1,26 +1,6 @@
-import {AuthResponseData} from "../model";
-import {AuthState, reducer} from "./auth.reducer";
-import {authenticationFailure, authenticationSuccess, autoLogin, login, signUp, unload} from "../actions/auth.actions";
-
-const userState: AuthResponseData = {
-  email: 'test@test.com',
-  username: 'test',
-  tokenType: 'bearer',
-  accessToken: 'token',
-  expiresIn: 1234,
-};
-
-const authenticatedState: AuthState = {
-  currentUser: userState,
-  loading: false,
-  error: undefined,
-};
-
-const initialState: AuthState = {
-  currentUser: undefined,
-  loading: false,
-  error: undefined,
-};
+import {reducer} from './auth.reducer';
+import {authenticationFailure, authenticationSuccess, autoLogin, login, signUp, unload} from '../actions/auth.actions';
+import {authDataMocks} from '../testing';
 
 describe('AuthReducer', () => {
   it('should unload the state', () => {
@@ -28,11 +8,11 @@ describe('AuthReducer', () => {
     const action = unload();
 
     // when
-    const newState = reducer(authenticatedState, action);
+    const newState = reducer(authDataMocks.authenticatedState, action);
 
     // then
     expect(newState)
-      .toEqual(initialState);
+      .toEqual(authDataMocks.initialState);
   });
 
   it('should set loading to true', () => {
@@ -40,69 +20,58 @@ describe('AuthReducer', () => {
     const action = autoLogin();
 
     // when
-    const newState = reducer(initialState, action);
+    const newState = reducer(authDataMocks.initialState, action);
 
     // then
     expect(newState)
       .toEqual({
-        ...initialState,
+        ...authDataMocks.initialState,
         loading: true,
       });
   });
 
   it('should set loading to true', () => {
     // given
-    const action = login({
-      data: {
-        email: userState.email,
-        password: '1234',
-      }
-    });
+    const action = login({ data: authDataMocks.loginData });
 
     // when
-    const newState = reducer(initialState, action);
+    const newState = reducer(authDataMocks.initialState, action);
 
     // then
     expect(newState)
       .toEqual({
-        ...initialState,
+        ...authDataMocks.initialState,
         loading: true,
       });
   });
 
   it('should set loading to true', () => {
     // given
-    const action = signUp({
-      data: {
-        email: userState.email,
-        username: 'test',
-        password: '1234',
-      }
-    });
+    const action = signUp({ data: authDataMocks.signUpData });
 
     // when
-    const newState = reducer(initialState, action);
+    const newState = reducer(authDataMocks.initialState, action);
 
     // then
     expect(newState)
       .toEqual({
-        ...initialState,
+        ...authDataMocks.initialState,
         loading: true,
       });
   });
 
   it('should set the authenticated user', () => {
     // given
-    const action = authenticationSuccess({ response: userState });
+    const action = authenticationSuccess({ response: authDataMocks.responseData });
 
     // when
-    const newState = reducer(initialState, action);
+    const newState = reducer(authDataMocks.initialState, action);
 
     // then
     expect(newState)
       .toEqual({
-        ...initialState,
-        currentUser: userState,
+        ...authDataMocks.initialState,
+        currentUser: authDataMocks.responseData,
       });
   });
 
@@ -111,12 +80,12 @@ describe('AuthReducer', () => {
     const action = authenticationFailure({ error: 'error' });
 
     // when
-    const newState = reducer(initialState, action);
+    const newState = reducer(authDataMocks.initialState, action);
 
     // then
     expect(newState)
       .toEqual({
-        ...initialState,
+        ...authDataMocks.initialState,
         error: 'error',
       });
   });

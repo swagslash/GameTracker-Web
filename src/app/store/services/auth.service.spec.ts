@@ -1,7 +1,7 @@
-import {AuthService} from "./auth.service";
-import {RequestHelperService} from "../../shared/request-helper.service";
-import {anything, deepEqual, instance, mock, verify} from "ts-mockito";
-import {AuthLoginRequestData, AuthSignUpRequestData} from "../model";
+import {AuthService} from './auth.service';
+import {RequestHelperService} from '../../shared/request-helper.service';
+import {anything, deepEqual, instance, mock, verify} from 'ts-mockito';
+import {authDataMocks} from '../testing';
 
 const requestHelperMock = mock(RequestHelperService);
 
@@ -14,12 +14,7 @@ describe('AuthService', () => {
 
   it('should dispatch the login request', () => {
     // given
-    const email = 'test@test.com';
-    const password = '1234';
-    const loginData: AuthLoginRequestData = {
-      email,
-      password,
-    };
+    const loginData = authDataMocks.loginData;
 
     // when
     authService.login(loginData);
@@ -30,14 +25,7 @@ describe('AuthService', () => {
 
   it('should dispatch the sign up request', () => {
     // given
-    const email = 'test@test.com';
-    const username = 'test';
-    const password = '1234';
-    const signUpData: AuthSignUpRequestData = {
-      email,
-      username,
-      password,
-    };
+    const signUpData = authDataMocks.signUpData;
 
     // when
     authService.signUp(signUpData);
