@@ -1,5 +1,5 @@
-import {createAction, props} from "@ngrx/store";
-import {AuthLoginRequestData, AuthResponseData, AuthSignUpRequestData} from "../model";
+import {createAction, props} from '@ngrx/store';
+import {AuthLoginRequestData, AuthResponseData, AuthSignUpRequestData} from '../model';
 
 export const autoLogin = createAction(
   '[Auth API] Auto login',

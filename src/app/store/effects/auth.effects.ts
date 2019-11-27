@@ -1,14 +1,14 @@
-import {Injectable} from "@angular/core";
-import {AuthState} from "../reducers/auth.reducer";
+import {Injectable} from '@angular/core';
+import {AuthState} from '../reducers/auth.reducer';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {Store} from "@ngrx/store";
+import {Store} from '@ngrx/store';
 import {authenticationSuccess, authenticationFailure, login, signUp, unload, autoLogin} from '../actions/auth.actions';
-import {catchError, map, switchMap, tap} from "rxjs/operators";
-import {AuthService} from "../services";
-import {EMPTY, Observable, of, throwError} from "rxjs";
-import {AuthResponseData} from "../model";
-import {LocalStorageService} from "../../shared/local-storage.service";
-import {Router} from "@angular/router";
+import {catchError, map, switchMap, tap} from 'rxjs/operators';
+import {AuthService} from '../services';
+import {EMPTY, Observable, of, throwError} from 'rxjs';
+import {AuthResponseData} from '../model';
+import {LocalStorageService} from '../../shared/local-storage.service';
+import {Router} from '@angular/router';
 
 const AUTH_DATA_KEY = 'userData';
 
@@ -21,7 +21,7 @@ export class AuthEffects {
               private readonly store: Store<AuthState>,
               private readonly authService: AuthService,
               private readonly localStorage: LocalStorageService,
-              private readonly router: Router){
+              private readonly router: Router) {
   }
 
   autoLogin$ = createEffect(() =>
@@ -110,7 +110,7 @@ export class AuthEffects {
   }
 
   private autoLogin(): Observable<AuthResponseData> {
-    const authData: AuthResponseData | undefined = this.localStorage.getItem(AUTH_DATA_KEY);
+    const authData: AuthResponseData | undefined = this.localStorage.getItem<AuthResponseData>(AUTH_DATA_KEY);
 
     if (authData === undefined) {
       return throwError(undefined);

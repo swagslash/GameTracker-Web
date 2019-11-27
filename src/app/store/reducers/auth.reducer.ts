@@ -1,11 +1,11 @@
-import {AuthResponseData} from "../model";
-import {Action, ActionReducer, createReducer, on} from "@ngrx/store";
-import {authenticationSuccess, authenticationFailure, login, signUp, unload, autoLogin} from "../actions/auth.actions";
+import {AuthResponseData} from '../model';
+import {Action, ActionReducer, createReducer, on} from '@ngrx/store';
+import {authenticationSuccess, authenticationFailure, login, signUp, unload, autoLogin} from '../actions/auth.actions';
 
 export interface AuthState {
-  currentUser: AuthResponseData | undefined,
-  loading: boolean,
-  error?: string,
+  currentUser: AuthResponseData | undefined;
+  loading: boolean;
+  error?: string;
 }
 
 export const initialUserState: AuthState = {
