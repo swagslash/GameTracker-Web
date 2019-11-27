@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {LoginData} from "./login/login-data";
-import {SignUpData} from "./signup/sign-up-data";
-import {AuthFacade} from "../store/facades/auth.facade";
+import {LoginData} from './login/login-data';
+import {SignupData} from './signup/signup-data';
+import {AuthFacade} from '../store/facades/auth.facade';
 
 @Component({
   selector: 'app-auth',
@@ -21,7 +21,7 @@ export class AuthComponent {
     this.authFacade.login(loginData.email, loginData.password);
   }
 
-  onSignUp(signUpData: SignUpData): void {
+  onSignUp(signUpData: SignupData): void {
     this.authFacade.signUp(signUpData.email, signUpData.username, signUpData.password);
   }
 

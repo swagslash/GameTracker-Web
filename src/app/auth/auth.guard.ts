@@ -2,8 +2,8 @@ import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTre
 import {Observable} from 'rxjs';
 import {take, map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
-import {AuthFacade} from "../store/facades/auth.facade";
-import {AuthResponseData} from "../store/model";
+import {AuthFacade} from '../store/facades/auth.facade';
+import {AuthResponseData} from '../store/model';
 
 type canActivateType = boolean | UrlTree | Promise<boolean | UrlTree> | Observable<boolean | UrlTree>;
 

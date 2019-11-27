@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { LandingPageRoutingModule } from './landing-page-routing.module';
-import { LandingPageComponent } from './landing-page.component';
+import {NgModule} from '@angular/core';
+import {LandingPageRoutingModule} from './landing-page-routing.module';
+import {LandingPageComponent} from './landing-page.component';
 
 @NgModule({
   imports: [
@@ -10,5 +10,5 @@ import { LandingPageComponent } from './landing-page.component';
     LandingPageComponent
   ],
 })
-export class LandingPageModule{
+export class LandingPageModule {
 }
