@@ -1,5 +1,6 @@
 # GameTracker-Web
 [![Build Status](https://travis-ci.com/swagslash/GameTracker-Web.svg?branch=master)](https://travis-ci.com/swagslash/GameTracker-Web)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a332a21fbfd43f986aceda677101f50)](https://www.codacy.com/manual/W3D3/GameTracker-Web?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=swagslash/GameTracker-Web&amp;utm_campaign=Badge_Grade)
 [![Coverage Status](https://coveralls.io/repos/github/swagslash/GameTracker-Web/badge.svg?branch=master)](https://coveralls.io/github/swagslash/GameTracker-Web?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
