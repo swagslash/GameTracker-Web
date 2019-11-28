@@ -13,12 +13,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // [Test output] TODO: remove once authentication is completely finished
-    this.authFacade.loading$.subscribe((loading) => console.log('loading', loading));
-    this.authFacade.authenticatedUser$.subscribe((user) => console.log('user', user));
-    this.authFacade.error$.subscribe((error) => console.log('error', error));
-
     this.authFacade.autoLogin();
   }
-
 }

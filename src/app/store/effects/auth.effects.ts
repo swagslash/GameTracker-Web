@@ -7,7 +7,7 @@ import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {AuthService} from '../services';
 import {EMPTY, Observable, of, throwError} from 'rxjs';
 import {AuthResponseData} from '../model';
-import {LocalStorageService} from '../../shared/local-storage.service';
+import {LocalStorageService} from '../../shared/services';
 import {Router} from '@angular/router';
 
 const AUTH_DATA_KEY = 'userData';

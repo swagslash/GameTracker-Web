@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {RequestHelperService} from '../../shared/request-helper.service';
+import {RequestHelperService} from '../../shared/services';
 import {AuthLoginRequestData, AuthResponseData, AuthSignUpRequestData} from '../model';
 import {Observable} from 'rxjs';
 import {HttpMethod} from '../../shared/http-method';

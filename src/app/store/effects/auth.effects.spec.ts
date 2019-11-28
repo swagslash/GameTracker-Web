@@ -3,7 +3,7 @@ import {anything, instance, mock, when} from 'ts-mockito';
 import {ActionsSubject, Store} from '@ngrx/store';
 import {AuthService} from '../services';
 import {Router} from '@angular/router';
-import {LocalStorageService} from '../../shared/local-storage.service';
+import {LocalStorageService} from '../../shared/services';
 import {authenticationFailure, authenticationSuccess, autoLogin, login, signUp, unload} from '../actions/auth.actions';
 import {AuthResponseData} from '../model';
 import {EMPTY, of, throwError} from 'rxjs';

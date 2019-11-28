@@ -1,5 +1,5 @@
 import {AuthService} from './auth.service';
-import {RequestHelperService} from '../../shared/request-helper.service';
+import {RequestHelperService} from '../../shared/services';
 import {anything, deepEqual, instance, mock, verify} from 'ts-mockito';
 import {authDataMocks} from '../testing';
 
