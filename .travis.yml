@@ -23,3 +23,6 @@ script:
   - npm run build
   - npm run test-headless
   - npm run lint
+
+after_script:
+  - cat ./coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js

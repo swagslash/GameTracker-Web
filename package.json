@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
+    "test-headless": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -41,6 +41,7 @@
     "@types/lodash": "^4.14.146",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "coveralls": "^3.0.9",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "^4.4.1",
@@ -49,9 +50,9 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~5.4.0",
+    "ts-mockito": "^2.5.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3",
-    "ts-mockito": "^2.5.0"
+    "typescript": "~3.5.3"
   }
 }
