@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
-import {LocalStorageService} from './local-storage.service';
-import {RequestHelperService} from './request-helper.service';
+import {LocalStorageService, RequestHelperService} from './services';
 import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
