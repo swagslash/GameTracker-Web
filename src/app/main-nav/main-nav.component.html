@@ -22,10 +22,11 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <img src="assets/logo.png" alt="Logo" class="logo">
-      <span>Game Tracker</span>
+      <span>GameTracker</span>
       <span class="fill-remaining-space"></span>
-      <a class="right-text-padding" routerLink="/auth">Log In</a>
-      <a class="right-text-padding" routerLink="/auth">Sign Up</a>
+      <a mat-button class="right-text-padding" routerLink="/auth">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">double_arrow</mat-icon> Log In</a>
+      <a mat-button class="right-text-padding" routerLink="/auth">Sign Up</a>
     </mat-toolbar>
     <ng-content></ng-content>
     <footer>
