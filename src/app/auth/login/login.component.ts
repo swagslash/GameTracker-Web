@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginData} from './login-data';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-login',
