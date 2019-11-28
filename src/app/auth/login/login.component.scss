@@ -5,6 +5,7 @@ form {
 
 form > * {
   width: 100%;
+  font-size: 12pt;
 }
 
 .sign-up-link {
@@ -14,11 +15,11 @@ form > * {
 }
 
 .login-card {
-  max-width: 50%;
+  max-width: 500px;
   margin: auto;
 
   mat-form-field {
-    padding-bottom: .7em;
+    padding-bottom: .5em;
   }
 }
 

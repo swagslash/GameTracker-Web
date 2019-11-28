@@ -1,14 +1,17 @@
 <mat-card class="signup-card">
   <mat-card-header class="signup-title">
-    <div mat-card-avatar class="example-header-image">
+    <!-- <div mat-card-avatar class="signup-icon">
       <mat-icon>email</mat-icon>
-    </div>
+    </div> -->
     <mat-card-title>Sign up</mat-card-title>
     <mat-card-subtitle>Join GameTracker!</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
-      <i>We will never spam your mail or share your information.</i>
+    <i class="info-text">We will never spam your mail or share your information.</i>
+    <app-social-login></app-social-login>
+
+    <p class="divider"><span>or</span></p>
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
       <mat-form-field>
         <label>
