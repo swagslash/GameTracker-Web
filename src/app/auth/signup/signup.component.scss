@@ -7,7 +7,11 @@ form > * {
   width: 100%;
 }
 
-.login-link {
-  text-decoration: none;
-  /* TODO link color */
+.signup-card {
+  max-width: 50%;
+  margin: auto;
+
+  mat-form-field {
+    padding-bottom: .5em;
+  }
 }
