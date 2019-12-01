@@ -10,7 +10,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {SocialLoginComponent} from './social-login/social-login.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
   ],
   declarations: [
     AuthComponent,
