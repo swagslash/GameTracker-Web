@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {SignupData} from './signup-data';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SignupData } from './signup-data';
 
 @Component({
   selector: 'app-signup',
