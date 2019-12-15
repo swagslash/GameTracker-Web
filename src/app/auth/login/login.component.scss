@@ -5,9 +5,39 @@ form {
 
 form > * {
   width: 100%;
+  font-size: 12pt;
 }
 
 .sign-up-link {
   text-decoration: none;
+  text-align: right;
   /* TODO color */
 }
+
+.login-card {
+  max-width: 500px;
+  margin: auto;
+
+  mat-form-field {
+    padding-bottom: .5em;
+  }
+}
+
+:host ::ng-deep .mat-card-header-text {
+  margin: 0;
+}
+
+.divider {
+  width: 100%; 
+  text-align: center; 
+  border-bottom: 1px solid grey; 
+  line-height: 0.1em;
+  margin: 20px 0 20px; 
+  font-size: 14pt;
+  color: grey;
+  span { 
+    background:#fff; 
+    padding:0 20px; 
+ }
+} 
+

@@ -1,52 +1,57 @@
-<p>Sign up (WIP)</p>
+<mat-card class="signup-card">
+  <mat-card-header class="signup-title">
+    <mat-card-title>Sign up</mat-card-title>
+    <mat-card-subtitle>Join GameTracker!</mat-card-subtitle>
+  </mat-card-header>
 
-<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <mat-form-field>
-    <label>
-      <input matInput [formControl]="usernameControl" placeholder="Username" i18n-placeholder>
-    </label>
-    <mat-error *ngIf="usernameControl.hasError('required')" i18n>
-      Username is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
+  <mat-card-content>
+    <i class="info-text" i18n>We will never spam your mail or share your information.</i>
+    <app-social-login></app-social-login>
 
-  <mat-form-field>
-    <label>
-      <input matInput [formControl]="emailControl" type="email" placeholder="Email" i18n-placeholder>
-    </label>
-    <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')" i18n>
-      Please enter a valid email address
-    </mat-error>
-    <mat-error *ngIf="emailControl.hasError('required')" i18n>
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
+    <p class="divider"><span i18n>or</span></p>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <label>
+          <input matInput [formControl]="usernameControl" placeholder="Username" i18n-placeholder>
+        </label>
+        <mat-error *ngIf="usernameControl.hasError('required')" i18n>
+          Username is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field>
-    <label>
-      <input matInput [formControl]="passwordControl" type="password" placeholder="Password" i18n-placeholder>
-    </label>
-    <mat-hint i18n>Password hint</mat-hint>
-    <mat-error *ngIf="passwordControl.hasError('required')" i18n>
-      Password is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
+      <mat-form-field>
+        <label>
+          <input matInput [formControl]="emailControl" type="email" placeholder="Email" i18n-placeholder>
+        </label>
+        <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')" i18n>
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailControl.hasError('required')" i18n>
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field>
-    <label>
-      <input matInput [formControl]="confirmPasswordControl" type="password" placeholder="Confirm password" i18n-placeholder>
-    </label>
-  </mat-form-field>
+      <mat-form-field>
+        <label>
+          <input matInput [formControl]="passwordControl" type="password" placeholder="Password" i18n-placeholder>
+        </label>
+        <mat-error *ngIf="passwordControl.hasError('required')" i18n>
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
 
-  <button mat-flat-button
-          color="primary"
-          type="submit"
-          [disabled]="!signUpForm.valid"
-          i18n>Sign up
-  </button>
-</form>
+      <mat-form-field>
+        <label>
+          <input matInput [formControl]="confirmPasswordControl" type="password" placeholder="Confirm password"
+            i18n-placeholder>
+        </label>
+      </mat-form-field>
 
-<span i18n>Already have an account?</span>
-<a (click)="onLoginClicked()"
-   class="login-link"
-   i18n>Login here</a>
+      <button mat-flat-button color="primary" type="submit" [disabled]="!signUpForm.valid" i18n>Sign up
+      </button>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-button (click)="onLoginClicked()" class="login-link" i18n>Already have an account? Log in!</a>
+  </mat-card-actions>
+</mat-card>
