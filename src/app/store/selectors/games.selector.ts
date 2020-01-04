@@ -1,6 +1,6 @@
-import {GamesState} from "../reducers/games.reducer";
-import {State} from "../reducers";
-import {createSelector} from "@ngrx/store";
+import {GamesState} from '../reducers/games.reducer';
+import {State} from '../reducers';
+import {createSelector} from '@ngrx/store';
 
 export const getGamesState = (state: State): GamesState => state.games;
 
