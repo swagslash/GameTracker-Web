@@ -1,5 +1,5 @@
 import {AuthEffects} from './auth.effects';
-import {anything, instance, mock, when} from 'ts-mockito';
+import {anything, deepEqual, instance, mock, verify, when} from 'ts-mockito';
 import {ActionsSubject, Store} from '@ngrx/store';
 import {AuthService} from '../services';
 import {Router} from '@angular/router';
@@ -145,5 +145,21 @@ describe('AuthEffects', () => {
       expect(data).toEqual(EMPTY);
       done();
     });
+  });
+
+  it('should navigate to the landing page on successful login', (done) => {
+    // given
+    const successAction = authenticationSuccess({ response: authDataMocks.responseData });
+
+    // when
+    actions$.next(successAction);
+
+    // then
+    authEffects.authenticationSuccess$
+      .pipe(take(1))
+      .subscribe(() => {
+        verify(router.navigate(deepEqual(['/']))).once();
+        done();
+      });
   });
 });
