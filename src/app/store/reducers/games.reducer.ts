@@ -1,6 +1,6 @@
-import {Game} from "../model";
-import {Action, ActionReducer, createReducer, on} from "@ngrx/store";
-import {loadUserGames, loadUserGamesError, loadUserGamesSuccess, unload} from "../actions/games.actions";
+import {Game} from '../model';
+import {Action, ActionReducer, createReducer, on} from '@ngrx/store';
+import {loadUserGames, loadUserGamesError, loadUserGamesSuccess, unload} from '../actions/games.actions';
 
 export interface GamesState {
   userGames: UserGamesState;
@@ -13,6 +13,7 @@ export interface UserGamesState {
   error?: string;
 }
 
+// tslint:disable-next-line:no-empty-interface
 export interface FetchGamesState {
   // TODO: implement when fetching games
 }
@@ -64,5 +65,5 @@ const gamesReducer = createReducer(
 );
 
 export const reducer: ActionReducer<GamesState, Action> = (state: GamesState | undefined, action: Action) => {
-  return gamesReducer(state, action)
+  return gamesReducer(state, action);
 };

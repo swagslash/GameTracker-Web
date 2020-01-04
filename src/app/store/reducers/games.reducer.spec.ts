@@ -1,6 +1,6 @@
-import {loadUserGames, loadUserGamesError, loadUserGamesSuccess, unload} from "../actions/games.actions";
-import {reducer} from "./games.reducer";
-import {gamesDataMocks} from "../testing";
+import {loadUserGames, loadUserGamesError, loadUserGamesSuccess, unload} from '../actions/games.actions';
+import {reducer} from './games.reducer';
+import {gamesDataMocks} from '../testing';
 
 describe('GamesReducer', () => {
   it('should unload the state', () => {

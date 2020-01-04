@@ -1,5 +1,5 @@
-import {FetchGamesState, GamesState, UserGamesState} from "../reducers/games.reducer";
-import {Game} from "../model";
+import {FetchGamesState, GamesState, UserGamesState} from '../reducers/games.reducer';
+import {Game} from '../model';
 
 const initialUserGamesState: UserGamesState = {
   games: [],

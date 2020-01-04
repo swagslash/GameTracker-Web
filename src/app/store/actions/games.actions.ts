@@ -1,5 +1,5 @@
-import {createAction, props} from "@ngrx/store";
-import {Game} from "../model";
+import {createAction, props} from '@ngrx/store';
+import {Game} from '../model';
 
 export const loadUserGames = createAction(
   '[Games API] Load user games',

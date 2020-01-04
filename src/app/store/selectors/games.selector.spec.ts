@@ -1,5 +1,5 @@
 import {gamesDataMocks} from '../testing';
-import {userGames, userGamesError, userGamesLoading} from "./games.selector";
+import {userGames, userGamesError, userGamesLoading} from './games.selector';
 
 describe('GamesSelector', () => {
   describe('user games', () => {
