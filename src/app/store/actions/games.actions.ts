@@ -6,6 +6,11 @@ export const loadUserGames = createAction(
   props<{ userId: string }>(),
 );
 
+export const filterUserGames = createAction(
+  '[Games API] Filter user games',
+  props<{ filters: string[] }>(),
+);
+
 export const loadUserGamesSuccess = createAction(
   '[Games API] Load user games success',
   props<{ games: Array<Game> }>(),

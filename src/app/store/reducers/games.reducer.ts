@@ -1,6 +1,12 @@
 import {Game} from '../model';
 import {Action, ActionReducer, createReducer, on} from '@ngrx/store';
-import {loadUserGames, loadUserGamesError, loadUserGamesSuccess, unload} from '../actions/games.actions';
+import {
+  filterUserGames,
+  loadUserGames,
+  loadUserGamesError,
+  loadUserGamesSuccess,
+  unload
+} from '../actions/games.actions';
 
 export interface GamesState {
   userGames: UserGamesState;
@@ -8,7 +14,8 @@ export interface GamesState {
 }
 
 export interface UserGamesState {
-  games: Array<Game>;
+  games: Game[];
+  filters: string[];
   loading: boolean;
   error?: string;
 }
@@ -20,6 +27,7 @@ export interface FetchGamesState {
 
 export const initialUserGamesState: UserGamesState = {
   games: [],
+  filters: [],
   loading: false,
   error: undefined,
 };
@@ -43,9 +51,17 @@ const gamesReducer = createReducer(
       error: undefined,
     },
   })),
+  on(filterUserGames, (state, { filters }) => ({
+    ...state,
+    userGames: {
+      ...state.userGames,
+      filters,
+    },
+  })),
   on(loadUserGamesSuccess, (state, { games }) => ({
     ...state,
     userGames: {
+      ...state.userGames,
       games,
       loading: false,
       error: undefined,
@@ -54,7 +70,7 @@ const gamesReducer = createReducer(
   on(loadUserGamesError, (state, { error }) => ({
     ...state,
     userGames: {
-      games: [],
+      ...state.userGames,
       loading: false,
       error,
     },

@@ -7,6 +7,11 @@ describe('GamesSelector', () => {
       expect(userGames.projector(gamesDataMocks.userGamesState)).toBe(gamesDataMocks.userGamesState.userGames.games);
     });
 
+    it('should select the games filtered', () => {
+      expect(userGames.projector(gamesDataMocks.userGamesFilterState))
+      .toEqual([gamesDataMocks.userGamesState.userGames.games[1]]);
+    });
+
     it('should select the loading state', () => {
       expect(userGamesLoading.projector(gamesDataMocks.userGamesLoadingState))
         .toBe(gamesDataMocks.userGamesLoadingState.userGames.loading);
