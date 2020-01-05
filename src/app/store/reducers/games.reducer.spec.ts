@@ -1,4 +1,10 @@
-import {loadUserGames, loadUserGamesError, loadUserGamesSuccess, unload} from '../actions/games.actions';
+import {
+  filterUserGames,
+  loadUserGames,
+  loadUserGamesError,
+  loadUserGamesSuccess,
+  unload
+} from '../actions/games.actions';
 import {reducer} from './games.reducer';
 import {gamesDataMocks} from '../testing';
 
@@ -49,6 +55,24 @@ describe('GamesReducer', () => {
           userGames: {
             ...gamesDataMocks.initialState.userGames,
             games: gamesDataMocks.games,
+          },
+        });
+    });
+
+    it('should set the filters', () => {
+      // given
+      const action = filterUserGames({ filters: gamesDataMocks.userGamesFilterState.userGames.filters });
+
+      // when
+      const newState = reducer(gamesDataMocks.initialState, action);
+
+      // then
+      expect(newState)
+        .toEqual({
+          ...gamesDataMocks.initialState,
+          userGames: {
+            ...gamesDataMocks.initialState.userGames,
+            filters: gamesDataMocks.userGamesFilterState.userGames.filters,
           },
         });
     });
