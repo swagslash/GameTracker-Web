@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
-import { NotFoundComponent } from './not-found/not-found.component';
+import {Routes} from '@angular/router';
+import {NotFoundComponent} from './not-found/not-found.component';
 
 export const APP_ROUTES: Routes = [
   {
@@ -10,6 +10,10 @@ export const APP_ROUTES: Routes = [
   {
     path: 'landing-page',
     loadChildren: () => import('./landing-page/landing-page.module').then(module => module.LandingPageModule),
+  },
+  {
+    path: 'games',
+    loadChildren: () => import('./games/games.module').then(module => module.GamesModule),
   },
   {
     path: 'auth',
