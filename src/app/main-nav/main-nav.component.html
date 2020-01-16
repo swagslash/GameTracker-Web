@@ -5,7 +5,7 @@
       [opened]="false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
+      <a mat-list-item routerLink="games">Games</a>
       <a mat-list-item href="#">Link 2</a>
       <a mat-list-item href="#">Link 3</a>
     </mat-nav-list>
@@ -22,15 +22,14 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <img src="assets/logo.png" alt="Logo" class="logo">
-      <span>GameTracker</span>
+      <span class="appName">GameTracker</span>
+      <a mat-button routerLink='games' i18n>Games</a>
       <span class="fill-remaining-space"></span>
       <a mat-button class="right-text-padding" routerLink="/auth" i18n>
-        <mat-icon aria-hidden="false" aria-label="Example home icon">double_arrow</mat-icon> Log In</a>
+        <mat-icon aria-hidden="false" aria-label="Example home icon">double_arrow</mat-icon>
+        Log In</a>
       <a mat-button class="right-text-padding" routerLink="/auth" i18n>Sign Up</a>
     </mat-toolbar>
     <ng-content></ng-content>
-    <footer>
-      <p>Created by Swagslash Studios</p>
-    </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
