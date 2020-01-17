@@ -9,12 +9,4 @@ import {Game} from '../../store/model';
 export class GamesListComponent implements OnInit {
 
   @Input() gamesList: Game[];
-
-  constructor() {
-  }
-
-  ngOnInit() {
-
-  }
-
 }
