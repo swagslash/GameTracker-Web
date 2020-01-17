@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GamesFacade} from 'src/app/store/facades/games.facade';
 import {startWith, take, tap} from 'rxjs/operators';
 import {AuthFacade} from '../../store/facades/auth.facade';
+import {Game} from "../../store/model";
 
 @Component({
   selector: 'app-games-page',
@@ -10,21 +11,7 @@ import {AuthFacade} from '../../store/facades/auth.facade';
 })
 export class GamesPageComponent implements OnInit {
 
-  games$ = this.gamesFacade.userGames$.pipe(startWith([
-      {
-        gameId: 'gameId',
-        dbGameId: 'dbGameID',
-        name: 'CSGO',
-        imageId: 'imgurl/lol',
-        tags: [],
-      }
-    ]),
-    tap((val) => console.log(val)));
-
-  private gamesList: {
-    gameId: string; dbGameId: string; imageId: string; name: string;
-    tags: { tagId: string; name: string; slug: string }[]
-  }[];
+  private gamesList: Game[];
 
   constructor(private readonly gamesFacade: GamesFacade,
               private readonly userFacade: AuthFacade) {
@@ -34,7 +21,13 @@ export class GamesPageComponent implements OnInit {
     this.userFacade.authenticatedUser$.pipe(take(1)).subscribe((user) => {
       this.gamesFacade.loadUserGames(user.email);
     });
-    this.gamesList = [{
+
+    //TODO remove this and set actual user games
+    this.gamesList = GamesPageComponent.generateTestData()
+  }
+
+  private static generateTestData(): Game[]  {
+    return [{
       gameId: '720',
       dbGameId: 'csgoid',
       imageId: 'co1vce',

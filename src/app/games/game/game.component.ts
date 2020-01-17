@@ -12,7 +12,10 @@ export class GameComponent implements OnInit {
   private imgSrc: string;
 
   ngOnInit(): void {
-    this.imgSrc = 'https://images.igdb.com/igdb/image/upload/t_cover_big/' + this.game.imageId + '.jpg';
+    const imgPathPrefix = 'https://images.igdb.com/igdb/image/upload/t_cover_big/';
+    const imgPathSuffix = '.jpg';
+
+    this.imgSrc = `${imgPathPrefix}${this.game.imageId}${imgPathSuffix}`;
   }
 
 }
