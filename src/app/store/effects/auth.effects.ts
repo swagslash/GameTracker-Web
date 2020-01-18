@@ -9,6 +9,7 @@ import {EMPTY, Observable, of, throwError} from 'rxjs';
 import {AuthResponseData} from '../model';
 import {LocalStorageService} from '../../shared/services';
 import {Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 const AUTH_DATA_KEY = 'userData';
 
@@ -21,7 +22,8 @@ export class AuthEffects {
               private readonly store: Store<AuthState>,
               private readonly authService: AuthService,
               private readonly localStorage: LocalStorageService,
-              private readonly router: Router) {
+              private readonly router: Router,
+              private readonly location: Location) {
   }
 
   autoLogin$ = createEffect(() =>
@@ -70,7 +72,7 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(authenticationSuccess),
         tap(() => {
-          void this.router.navigate(['/']);
+          this.handleLogin();
         }),
         map(() => EMPTY),
       ),
@@ -90,6 +92,22 @@ export class AuthEffects {
       dispatch: false,
     });
 
+  /**
+   * Redirects the user
+   * - To the landing page if coming from the auth-page
+   * - To where he was coming from otherwise
+   */
+  private handleLogin(): void {
+    const path = this.location.path();
+
+    // Ignore query parameters
+    const page = path.split('?')[0];
+
+    const redirectPath = page === '/auth' ? '/' : path;
+
+    void this.router.navigate([redirectPath]);
+  }
+
   private handleAuthentication(response: AuthResponseData): void {
     this.localStorage.setItem(AUTH_DATA_KEY, response);
     this.autoLogout(response.expiresIn);
@@ -104,6 +122,7 @@ export class AuthEffects {
       clearTimeout(this.tokenExpirationTimer);
     }
 
+    console.log('test');
     this.tokenExpirationTimer = setTimeout(() => {
       this.store.dispatch(unload());
     }, expiresIn);
