@@ -9,12 +9,14 @@ import {AuthResponseData} from '../model';
 import {EMPTY, of, throwError} from 'rxjs';
 import {take} from 'rxjs/operators';
 import {authDataMocks} from '../testing';
+import {Location} from '@angular/common';
 
 const actions$ = new ActionsSubject();
 const store = mock(Store);
 const authService = mock(AuthService);
 const localStorageService = mock(LocalStorageService);
 const router = mock(Router);
+const location = mock(Location);
 
 describe('AuthEffects', () => {
   let authEffects: AuthEffects;
@@ -25,7 +27,8 @@ describe('AuthEffects', () => {
       instance(store),
       instance(authService),
       instance(localStorageService),
-      instance(router)
+      instance(router),
+      instance(location),
     );
   });
 
@@ -78,6 +81,25 @@ describe('AuthEffects', () => {
       expect(data.type).toEqual(authenticationSuccess.type);
       done();
     });
+  });
+
+  it('should auto logout', () => {
+    jasmine.clock().install();
+
+    // given
+    const loginAction = login({ data: authDataMocks.loginData });
+    when(authService.login(anything())).thenReturn(of(authDataMocks.responseData));
+    actions$.next(loginAction);
+
+    // when
+    authEffects.login$.pipe(take(1)).subscribe();
+    jasmine.clock().tick(authDataMocks.responseData.expiresIn + 10);
+
+    // then
+    verify(store.dispatch(deepEqual(unload())))
+      .atLeast(1);
+
+    jasmine.clock().uninstall();
   });
 
   it('should fail on login', (done) => {
@@ -150,6 +172,7 @@ describe('AuthEffects', () => {
   it('should navigate to the landing page on successful login', (done) => {
     // given
     const successAction = authenticationSuccess({ response: authDataMocks.responseData });
+    when(location.path()).thenReturn('/auth');
 
     // when
     actions$.next(successAction);
@@ -159,6 +182,24 @@ describe('AuthEffects', () => {
       .pipe(take(1))
       .subscribe(() => {
         verify(router.navigate(deepEqual(['/']))).once();
+        done();
+      });
+  });
+
+  it('should navigate redirect on successful login', (done) => {
+    // given
+    const successAction = authenticationSuccess({ response: authDataMocks.responseData });
+    const originalPath = '/games?someParam=someValue';
+    when(location.path()).thenReturn(originalPath);
+
+    // when
+    actions$.next(successAction);
+
+    // then
+    authEffects.authenticationSuccess$
+      .pipe(take(1))
+      .subscribe(() => {
+        verify(router.navigate(deepEqual([originalPath]))).once();
         done();
       });
   });
