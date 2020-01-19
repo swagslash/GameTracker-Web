@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {GamesFacade} from 'src/app/store/facades/games.facade';
-import {startWith, take, tap} from 'rxjs/operators';
+import {take} from 'rxjs/operators';
 import {AuthFacade} from '../../store/facades/auth.facade';
-import {Game} from "../../store/model";
+import {Game} from '../../store/model';
 
 @Component({
   selector: 'app-games-page',
@@ -11,20 +11,11 @@ import {Game} from "../../store/model";
 })
 export class GamesPageComponent implements OnInit {
 
-  private gamesList: Game[];
-
   constructor(private readonly gamesFacade: GamesFacade,
               private readonly userFacade: AuthFacade) {
   }
 
-  ngOnInit() {
-    this.userFacade.authenticatedUser$.pipe(take(1)).subscribe((user) => {
-      this.gamesFacade.loadUserGames(user.email);
-    });
-
-    //TODO remove this and set actual user games
-    this.gamesList = GamesPageComponent.generateTestData()
-  }
+  private gamesList: Game[];
 
   private static generateTestData(): Game[]  {
     return [{
@@ -54,6 +45,15 @@ export class GamesPageComponent implements OnInit {
       name: 'Nintendogs',
       tags: [{tagId: '1', name: 'Simulation', slug: 'sim'}]
     }];
+  }
+
+  ngOnInit() {
+    this.userFacade.authenticatedUser$.pipe(take(1)).subscribe((user) => {
+      this.gamesFacade.loadUserGames(user.email);
+    });
+
+    // TODO remove this and set actual user games
+    this.gamesList = GamesPageComponent.generateTestData();
   }
 
 }

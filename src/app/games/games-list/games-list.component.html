@@ -1,11 +1,4 @@
-<h2>Your Games</h2>
-<!--<app-game *ngFor="let game of gamesList" [game]="game"></app-game>-->
-<!--<div fxLayout="row wrap">-->
-<!--  <app-game *ngFor="let game of gamesList" [game]="game"></app-game>-->
-<!--  <app-game *ngFor="let game of gamesList" [game]="game" fxFlex="50"></app-game>-->
-<!--  <app-game *ngFor="let game of gamesList" [game]="game" fxFlex="50"></app-game>-->
-
-<!--</div>-->
+<h2>{{pageTitle}}</h2>
 <main class="grid">
   <app-game *ngFor="let game of gamesList" [game]="game"></app-game>
 </main>
