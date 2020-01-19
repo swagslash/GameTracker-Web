@@ -10,7 +10,7 @@ import {
   userGamesError,
   userGamesLoading
 } from '../selectors/games.selector';
-import {fetchGames, loadUserGames, unload} from '../actions/games.actions';
+import {addGames, fetchGames, loadUserGames, unload} from '../actions/games.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +35,10 @@ export class GamesFacade {
 
   fetchGames(searchTerms: string): void {
     this.store.dispatch(fetchGames({ searchTerm: searchTerms }));
+  }
+
+  addGames(gameIds: string[]): void {
+    this.store.dispatch(addGames({ gameIds }));
   }
 
   unload(): void {
