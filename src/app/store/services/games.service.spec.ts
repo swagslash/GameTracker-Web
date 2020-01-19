@@ -19,4 +19,16 @@ describe('GamesService', () => {
     verify(requestHelperMock.request(anything(), anything(), deepEqual({})))
       .once();
   });
+
+  it('should dispatch the fetch games request', () => {
+    // given
+    const searchTerm = 'game';
+
+    // when
+    gamesService.fetchGames(searchTerm);
+
+    // then
+    verify(requestHelperMock.request(anything(), anything(), deepEqual({ searchTerm })))
+      .once();
+  });
 });

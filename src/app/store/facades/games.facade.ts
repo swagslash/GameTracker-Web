@@ -1,8 +1,16 @@
 import {Injectable} from '@angular/core';
 import {State} from '../reducers';
 import {select, Store} from '@ngrx/store';
-import {userGames, userGamesError, userGamesLoading} from '../selectors/games.selector';
-import {loadUserGames, unload} from '../actions/games.actions';
+import {
+  fetchedGames,
+  fetchGamesError,
+  fetchGamesLoading,
+  searchTerm,
+  userGames,
+  userGamesError,
+  userGamesLoading
+} from '../selectors/games.selector';
+import {fetchGames, loadUserGames, unload} from '../actions/games.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +21,20 @@ export class GamesFacade {
   userGamesLoading$ = this.store.pipe(select(userGamesLoading));
   userGamesError$ = this.store.pipe(select(userGamesError));
 
+  searchTerm$ = this.store.pipe(select(searchTerm));
+  fetchedGames$ = this.store.pipe(select(fetchedGames));
+  fetchGamesLoading$ = this.store.pipe(select(fetchGamesLoading));
+  fetchGamesError$ = this.store.pipe(select(fetchGamesError));
+
   constructor(private readonly store: Store<State>) {
   }
 
   loadUserGames(): void {
     this.store.dispatch(loadUserGames());
+  }
+
+  fetchGames(searchTerms: string): void {
+    this.store.dispatch(fetchGames({ searchTerm: searchTerms }));
   }
 
   unload(): void {

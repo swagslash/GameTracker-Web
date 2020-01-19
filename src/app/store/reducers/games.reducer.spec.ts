@@ -1,4 +1,7 @@
 import {
+  fetchGames,
+  fetchGamesError,
+  fetchGamesSuccess,
   filterUserGames,
   loadUserGames,
   loadUserGamesError,
@@ -96,6 +99,60 @@ describe('GamesReducer', () => {
   });
 
   describe('fetch games', () => {
+    it('should set loading to true', () => {
+      // given
+      const searchTerm = 'game';
+      const action = fetchGames({ searchTerm });
 
+      // when
+      const newState = reducer(gamesDataMocks.initialState, action);
+
+      // then
+      expect(newState)
+        .toEqual({
+          ...gamesDataMocks.initialState,
+          fetchGames: {
+            ...gamesDataMocks.initialState.fetchGames,
+            searchTerm,
+            loading: true,
+          },
+        });
+    });
+
+    it('should set the games', () => {
+      // given
+      const action = fetchGamesSuccess({ games: gamesDataMocks.games });
+
+      // when
+      const newState = reducer(gamesDataMocks.initialState, action);
+
+      // then
+      expect(newState)
+        .toEqual({
+          ...gamesDataMocks.initialState,
+          fetchGames: {
+            ...gamesDataMocks.initialState.fetchGames,
+            games: gamesDataMocks.games,
+          },
+        });
+    });
+
+    it('should set the error state', () => {
+      // given
+      const action = fetchGamesError({ error: 'error' });
+
+      // when
+      const newState = reducer(gamesDataMocks.initialState, action);
+
+      // then
+      expect(newState)
+        .toEqual({
+          ...gamesDataMocks.initialState,
+          fetchGames: {
+            ...gamesDataMocks.initialState.fetchGames,
+            error: 'error',
+          },
+        });
+    });
   });
 });

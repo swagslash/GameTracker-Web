@@ -9,7 +9,10 @@ const initialUserGamesState: UserGamesState = {
 };
 
 const initialFetchGamesState: FetchGamesState = {
-
+  searchTerm: '',
+  games: undefined,
+  loading: false,
+  error: undefined,
 };
 
 const game1: Game = {
@@ -73,6 +76,36 @@ const userGamesFilterState: GamesState = {
   },
 };
 
+const fetchedGamesState: GamesState = {
+  ...initialState,
+  fetchGames: {
+    searchTerm: 'game2',
+    games: [game2],
+    loading: false,
+    error: undefined,
+  },
+};
+
+const fetchedGamesLoadingState: GamesState = {
+  ...initialState,
+  fetchGames: {
+    searchTerm: 'game2',
+    games: undefined,
+    loading: true,
+    error: undefined,
+  },
+};
+
+const fetchedGamesErrorState: GamesState = {
+  ...initialState,
+  fetchGames: {
+    searchTerm: 'game2',
+    games: undefined,
+    loading: false,
+    error: 'error',
+  },
+};
+
 export const gamesDataMocks = {
   initialState,
   games,
@@ -80,4 +113,7 @@ export const gamesDataMocks = {
   userGamesLoadingState,
   userGamesErrorState,
   userGamesFilterState,
+  fetchedGamesState,
+  fetchedGamesLoadingState,
+  fetchedGamesErrorState,
 };

@@ -1,4 +1,4 @@
-import {loadUserGames, unload} from '../actions/games.actions';
+import {fetchGames, loadUserGames, unload} from '../actions/games.actions';
 import {deepEqual, instance, mock, verify} from 'ts-mockito';
 import {GamesFacade} from './games.facade';
 import {Store} from '@ngrx/store';
@@ -18,6 +18,16 @@ describe('GamesFacade', () => {
 
     // then
     verify(store.dispatch(deepEqual(loadUserGames())))
+      .once();
+  });
+
+  it('should dispatch the fetch games action', () => {
+    // when
+    const searchTerm = 'game';
+    gamesFacade.fetchGames(searchTerm);
+
+    // then
+    verify(store.dispatch(deepEqual(fetchGames({ searchTerm }))))
       .once();
   });
 

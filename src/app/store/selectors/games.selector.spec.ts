@@ -1,5 +1,13 @@
 import {gamesDataMocks} from '../testing';
-import {userGames, userGamesError, userGamesLoading} from './games.selector';
+import {
+  fetchedGames,
+  fetchGamesError,
+  fetchGamesLoading,
+  searchTerm,
+  userGames,
+  userGamesError,
+  userGamesLoading
+} from './games.selector';
 
 describe('GamesSelector', () => {
   describe('user games', () => {
@@ -24,6 +32,24 @@ describe('GamesSelector', () => {
   });
 
   describe('fetch games', () => {
-    // TODO: implement
+    it('should select the search term', () => {
+      expect(searchTerm.projector(gamesDataMocks.fetchedGamesState))
+        .toBe(gamesDataMocks.fetchedGamesState.fetchGames.searchTerm);
+    });
+
+    it('should select the fetched games', () => {
+      expect(fetchedGames.projector(gamesDataMocks.fetchedGamesState))
+        .toBe(gamesDataMocks.fetchedGamesState.fetchGames.games);
+    });
+
+    it('should select the loading state', () => {
+      expect(fetchGamesLoading.projector(gamesDataMocks.fetchedGamesLoadingState))
+        .toBe(gamesDataMocks.fetchedGamesLoadingState.fetchGames.loading);
+    });
+
+    it('should select the error state', () => {
+      expect(fetchGamesError.projector(gamesDataMocks.fetchedGamesErrorState))
+        .toBe(gamesDataMocks.fetchedGamesErrorState.fetchGames.error);
+    });
   });
 });
