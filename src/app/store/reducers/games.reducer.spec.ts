@@ -24,8 +24,7 @@ describe('GamesReducer', () => {
   describe('user games', () => {
     it('should set loading to true', () => {
       // given
-      const userId = 'ID';
-      const action = loadUserGames({ userId });
+      const action = loadUserGames();
 
       // when
       const newState = reducer(gamesDataMocks.initialState, action);

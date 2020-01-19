@@ -14,11 +14,11 @@ describe('GamesFacade', () => {
 
   it('should dispatch the load user games action', () => {
     // when
-    const userId = 'ID';
-    gamesFacade.loadUserGames(userId);
+    gamesFacade.loadUserGames();
 
     // then
-    verify(store.dispatch(deepEqual(loadUserGames({ userId })))).once();
+    verify(store.dispatch(deepEqual(loadUserGames())))
+      .once();
   });
 
   it('should displatch the unload action', () => {
@@ -26,7 +26,8 @@ describe('GamesFacade', () => {
     gamesFacade.unload();
 
     // then
-    verify(store.dispatch(deepEqual(unload()))).once();
+    verify(store.dispatch(deepEqual(unload())))
+      .once();
   });
 
 });

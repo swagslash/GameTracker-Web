@@ -1,5 +1,5 @@
 import {loadUserGames, loadUserGamesError, loadUserGamesSuccess} from '../actions/games.actions';
-import {anything, instance, mock, when} from 'ts-mockito';
+import {instance, mock, when} from 'ts-mockito';
 import {of, throwError} from 'rxjs';
 import {gamesDataMocks} from '../testing';
 import {ActionsSubject, Store} from '@ngrx/store';
@@ -24,9 +24,8 @@ describe('GamesEffects', () => {
 
   it('should load user games', (done) => {
     // given
-    const userId = 'ID';
-    const loadUserGamesAction = loadUserGames({ userId });
-    when(gamesService.loadGames(anything())).thenReturn(of(gamesDataMocks.games));
+    const loadUserGamesAction = loadUserGames();
+    when(gamesService.loadGames()).thenReturn(of(gamesDataMocks.games));
 
     // when
     actions$.next(loadUserGamesAction);
@@ -42,9 +41,8 @@ describe('GamesEffects', () => {
 
   it('should fail on loading user games', (done) => {
     // given
-    const userId = 'ID';
-    const loadUserGamesAction = loadUserGames({ userId });
-    when(gamesService.loadGames(anything())).thenReturn(throwError(undefined));
+    const loadUserGamesAction = loadUserGames();
+    when(gamesService.loadGames()).thenReturn(throwError(undefined));
 
     // when
     actions$.next(loadUserGamesAction);

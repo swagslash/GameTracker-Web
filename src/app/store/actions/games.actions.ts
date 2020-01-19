@@ -3,7 +3,6 @@ import {Game} from '../model';
 
 export const loadUserGames = createAction(
   '[Games API] Load user games',
-  props<{ userId: string }>(),
 );
 
 export const filterUserGames = createAction(
