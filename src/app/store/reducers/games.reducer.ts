@@ -1,6 +1,9 @@
 import {Game} from '../model';
 import {Action, ActionReducer, createReducer, on} from '@ngrx/store';
 import {
+  fetchGames,
+  fetchGamesError,
+  fetchGamesSuccess,
   filterUserGames,
   loadUserGames,
   loadUserGamesError,
@@ -20,9 +23,11 @@ export interface UserGamesState {
   error?: string;
 }
 
-// tslint:disable-next-line:no-empty-interface
 export interface FetchGamesState {
-  // TODO: implement when fetching games
+  searchTerm: string;
+  games: Game[] | undefined;
+  loading: boolean;
+  error: string | undefined;
 }
 
 export const initialUserGamesState: UserGamesState = {
@@ -33,7 +38,10 @@ export const initialUserGamesState: UserGamesState = {
 };
 
 export const initialFetchGamesState: FetchGamesState = {
-  // TODO: define initial state
+  searchTerm: '',
+  games: undefined,
+  loading: false,
+  error: undefined,
 };
 
 export const initialGamesState: GamesState = {
@@ -71,6 +79,32 @@ const gamesReducer = createReducer(
     ...state,
     userGames: {
       ...state.userGames,
+      loading: false,
+      error,
+    },
+  })),
+  on(fetchGames, (state, { searchTerm }) => ({
+    ...state,
+    fetchGames: {
+      ...state.fetchGames,
+      searchTerm,
+      loading: true,
+      error: undefined,
+    },
+  })),
+  on(fetchGamesSuccess, (state, { games }) => ({
+    ...state,
+    fetchGames: {
+      ...state.fetchGames,
+      games,
+      loading: false,
+      error: undefined,
+    },
+  })),
+  on(fetchGamesError, (state, { error }) => ({
+    ...state,
+    fetchGames: {
+      ...state.fetchGames,
       loading: false,
       error,
     },

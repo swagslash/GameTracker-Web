@@ -6,3 +6,6 @@ export const SIGNUP_PATH = `${AUTH_PATH}/signup`;
 
 // TODO: change to actual endpoint path
 export const GAMES_PATH = `${API_BASE_PATH}/games`;
+
+// TODO: change to actual endpoint path
+export const FETCH_GAMES_PATH =  `${GAMES_PATH}/fetch`;

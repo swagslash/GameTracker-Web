@@ -122,7 +122,6 @@ export class AuthEffects {
       clearTimeout(this.tokenExpirationTimer);
     }
 
-    console.log('test');
     this.tokenExpirationTimer = setTimeout(() => {
       this.store.dispatch(unload());
     }, expiresIn);

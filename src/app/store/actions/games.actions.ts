@@ -20,6 +20,21 @@ export const loadUserGamesError = createAction(
   props<{ error: string }>(),
 );
 
+export const fetchGames = createAction(
+  '[Games API] Fetch games',
+  props<{ searchTerm: string }>(),
+);
+
+export const fetchGamesSuccess = createAction(
+  '[Games API] Fetch games success',
+  props<{ games: Array<Game> }>(),
+);
+
+export const fetchGamesError = createAction(
+  '[Games API] Fetch games error',
+  props<{ error: string }>(),
+);
+
 export const unload = createAction(
   '[Games API] Unload',
 );

@@ -22,4 +22,22 @@ export const userGamesError = createSelector(
   (state: GamesState) => state.userGames.error,
 );
 
-// TODO: define selectors fro fetching games
+export const searchTerm = createSelector(
+  getGamesState,
+  (state: GamesState) => state.fetchGames.searchTerm,
+);
+
+export const fetchedGames = createSelector(
+  getGamesState,
+  (state: GamesState) => state.fetchGames.games,
+);
+
+export const fetchGamesLoading = createSelector(
+  getGamesState,
+  (state: GamesState) => state.fetchGames.loading,
+);
+
+export const fetchGamesError = createSelector(
+  getGamesState,
+  (state: GamesState) => state.fetchGames.error,
+);

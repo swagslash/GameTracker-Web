@@ -97,7 +97,7 @@ describe('AuthEffects', () => {
 
     // then
     verify(store.dispatch(deepEqual(unload())))
-      .atLeast(1);
+      .once();
 
     jasmine.clock().uninstall();
   });
