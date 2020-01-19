@@ -1,6 +1,9 @@
 import {Game} from '../model';
 import {Action, ActionReducer, createReducer, on} from '@ngrx/store';
 import {
+  addGames,
+  addGamesError,
+  addGamesSuccess,
   fetchGames,
   fetchGamesError,
   fetchGamesSuccess,
@@ -108,6 +111,35 @@ const gamesReducer = createReducer(
       loading: false,
       error,
     },
+  })),
+  on(addGames, (state) => ({
+    ...state,
+    fetchGames: {
+      ...state.fetchGames,
+      loading: true,
+      error: undefined,
+    },
+  })),
+  on(addGamesSuccess, (state, { games }) => ({
+    ...state,
+    userGames: {
+      ...state.userGames,
+      games, // TODO Could be improved by only adding new added games
+    },
+    fetchGames: {
+      searchTerm: '',
+      games: undefined,
+      loading: false,
+      error: undefined,
+    },
+  })),
+  on(addGamesError, (state, { error }) => ({
+    ...state,
+    fetchGames: {
+      ...state.fetchGames,
+      loading: false,
+      error,
+    }
   })),
   on(unload, () => ({
     ...initialGamesState,

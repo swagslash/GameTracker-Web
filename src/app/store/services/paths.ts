@@ -9,3 +9,6 @@ export const GAMES_PATH = `${API_BASE_PATH}/games`;
 
 // TODO: change to actual endpoint path
 export const FETCH_GAMES_PATH =  `${GAMES_PATH}/fetch`;
+
+// TODO: change to actual endpoint path
+export const ADD_GAMES_PATH =  `${GAMES_PATH}/add`;

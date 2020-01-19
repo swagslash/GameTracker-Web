@@ -31,4 +31,16 @@ describe('GamesService', () => {
     verify(requestHelperMock.request(anything(), anything(), deepEqual({ searchTerm })))
       .once();
   });
+
+  it('should dispatch the add games request', () => {
+    // given
+    const gameIds = ['ID1', 'ID2'];
+
+    // when
+    gamesService.addGames(gameIds);
+
+    // then
+    verify(requestHelperMock.request(anything(), anything(), deepEqual({ gameIds })))
+      .once();
+  });
 });

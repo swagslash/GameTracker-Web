@@ -35,6 +35,21 @@ export const fetchGamesError = createAction(
   props<{ error: string }>(),
 );
 
+export const addGames = createAction(
+  '[Games API] Add games',
+  props<{ gameIds: Array<string> }>(),
+);
+
+export const addGamesSuccess = createAction(
+  '[Games API] Add games success',
+  props<{ games: Array<Game> }>(),
+);
+
+export const addGamesError = createAction(
+  '[Games API] Add games error',
+  props<{ error: string }>(),
+);
+
 export const unload = createAction(
   '[Games API] Unload',
 );
