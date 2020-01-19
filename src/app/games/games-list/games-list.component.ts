@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Game} from '../../store/model';
 
 @Component({
@@ -6,7 +6,8 @@ import {Game} from '../../store/model';
   templateUrl: './games-list.component.html',
   styleUrls: ['./games-list.component.scss']
 })
-export class GamesListComponent implements OnInit {
+export class GamesListComponent {
 
+  @Input() pageTitle: string;
   @Input() gamesList: Game[];
 }
