@@ -1,5 +1,4 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
 import {GamesPageComponent} from './games-page.component';
 import {GamesModule} from '../games.module';
 

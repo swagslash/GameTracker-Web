@@ -6,10 +6,11 @@ import {GamesPageComponent} from './games-page/games-page.component';
 import {GamesRoutingModule} from './games-routing.module';
 import {MatChipsModule, MatGridListModule, MatIconModule, MatListModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
+import {GameDetailComponent} from './game-detail/game-detail.component';
 import {AppModule} from '../app.module';
 
 @NgModule({
-  declarations: [GamesListComponent, GameComponent, GamesPageComponent, GamesPageComponent],
+  declarations: [GamesListComponent, GameComponent, GamesPageComponent, GamesPageComponent, GameDetailComponent],
   imports: [
     CommonModule,
     GamesRoutingModule,
