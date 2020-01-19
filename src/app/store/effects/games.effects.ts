@@ -18,8 +18,8 @@ export class GamesEffects {
   loadUserGames$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadUserGames),
-      switchMap(({ userId }) => {
-        return this.gamesService.loadGames(userId)
+      switchMap(() => {
+        return this.gamesService.loadGames()
           .pipe(
             map((games) => loadUserGamesSuccess( { games })),
             catchError((error) => of(loadUserGamesError({ error }))),

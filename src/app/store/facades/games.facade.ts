@@ -16,8 +16,8 @@ export class GamesFacade {
   constructor(private readonly store: Store<State>) {
   }
 
-  loadUserGames(userId: string): void {
-    this.store.dispatch(loadUserGames({ userId }));
+  loadUserGames(): void {
+    this.store.dispatch(loadUserGames());
   }
 
   unload(): void {

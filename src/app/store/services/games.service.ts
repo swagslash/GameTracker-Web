@@ -13,7 +13,7 @@ export class GamesService {
   constructor(private readonly requestHelper: RequestHelperService) {
   }
 
-  loadGames(userId: string): Observable<Array<Game>> {
-    return this.requestHelper.request(HttpMethod.POST, GAMES_PATH, { userId });
+  loadGames(): Observable<Array<Game>> {
+    return this.requestHelper.request(HttpMethod.POST, GAMES_PATH, {});
   }
 }

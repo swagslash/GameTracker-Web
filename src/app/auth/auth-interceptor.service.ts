@@ -12,7 +12,7 @@ const mapUserToHttpEvent =
     }
 
     const httpParams = new HttpParams();
-    httpParams.set('auth', userData.accessToken);
+    httpParams.set('Authorization', `bearer ${userData.accessToken}`);
 
     const modifiedRequest = request.clone({
       params: httpParams,

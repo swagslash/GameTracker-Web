@@ -12,13 +12,11 @@ describe('GamesService', () => {
   });
 
   it('should dispatch the load games request', () => {
-    // given
-    const userId = 'ID';
-
     // when
-    gamesService.loadGames(userId);
+    gamesService.loadGames();
 
     // then
-    verify(requestHelperMock.request(anything(), anything(), deepEqual({ userId }))).once();
+    verify(requestHelperMock.request(anything(), anything(), deepEqual({})))
+      .once();
   });
 });
