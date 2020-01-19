@@ -49,5 +49,4 @@ describe('GamesFacade', () => {
     verify(store.dispatch(deepEqual(unload())))
       .once();
   });
-
 });
