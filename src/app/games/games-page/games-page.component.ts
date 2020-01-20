@@ -49,7 +49,7 @@ export class GamesPageComponent implements OnInit {
 
   ngOnInit() {
     this.userFacade.authenticatedUser$.pipe(take(1)).subscribe((user) => {
-      this.gamesFacade.loadUserGames(user.email);
+      this.gamesFacade.loadUserGames();
     });
 
     // TODO remove this and set actual user games
