@@ -1,0 +1,17 @@
+<div>
+  <div class="header-wrapper">
+    <img [src]="this.imgSrc" class="img-header" width="100%"/>
+  </div>
+  <div class="well">
+    <img [src]="this.imgSrc" class="pull-left main-img"/>
+    <div>
+      <h3 class="game-name">{{game.name}}</h3>
+      <span
+        class="label">
+        <mat-chip-list>
+          <mat-chip *ngFor="let tag of game.tags">{{tag.name}}</mat-chip>
+        </mat-chip-list>
+      </span>
+    </div>
+  </div>
+</div>

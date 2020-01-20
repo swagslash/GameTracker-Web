@@ -32,12 +32,16 @@ a {
     color: black;
 }
 
-a:hover, a:active{
-    color: white;
+a:hover, a:active {
+  color: white;
 }
 
 .logo {
   height: inherit;
+}
+
+.appName {
+  margin-right: 10px;
 }
 
 footer{
