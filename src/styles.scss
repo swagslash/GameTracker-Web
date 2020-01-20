@@ -30,3 +30,8 @@ $game-tracker-web-theme: mat-light-theme($game-tracker-web-primary, $game-tracke
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.matcolorprimary{
+    background-color: mat-color($game-tracker-web-primary)
+}
