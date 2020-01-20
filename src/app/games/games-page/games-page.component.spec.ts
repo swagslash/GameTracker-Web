@@ -11,12 +11,6 @@ describe('GamesPageComponent', () => {
     TestBed.configureTestingModule({
       declarations: [],
       imports: [
-        // NoopAnimationsModule,
-        // LayoutModule,
-        // MatButtonModule,
-        // MatIconModule,
-        // MatListModule,
-        // MatSidenavModule,
         GamesModule
       ]
     })
