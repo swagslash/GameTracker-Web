@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AuthComponent } from './auth.component';
+import {AuthComponent} from './auth.component';
 import {Component} from '@angular/core';
 import {instance, mock} from 'ts-mockito';
 import {AuthFacade} from '../store/facades/auth.facade';
@@ -30,13 +30,17 @@ describe('AuthComponent', () => {
         {provide: AuthFacade, useFactory: () => instance(authFacade)},
       ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    fixture.destroy();
   });
 
   it('should create', () => {
