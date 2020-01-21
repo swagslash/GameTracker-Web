@@ -5,5 +5,6 @@ export interface Game {
   dbGameId: string;
   name: string;
   imageId: string;
-  tags: Array<Tag>;
+  genres: Array<Tag>;
+  gamemodes: Array<Tag>;
 }

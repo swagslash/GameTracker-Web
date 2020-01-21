@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {map, shareReplay} from 'rxjs/operators';
+import {AuthFacade} from '../store/facades/auth.facade';
 
 @Component({
   selector: 'app-main-nav',
@@ -16,7 +17,9 @@ export class MainNavComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  private readonly user$ = this.authFacade.authenticatedUser$;
+
+  constructor(private breakpointObserver: BreakpointObserver, private authFacade: AuthFacade) {
   }
 
 }

@@ -20,9 +20,13 @@ const game1: Game = {
   dbGameId: 'DB_ID1',
   imageId: 'IMAGE_ID1',
   name: 'game1',
-  tags: [
-    { name: 'TAG1', slug: 'tag1', tagId: 'ID1' },
-    { name: 'TAG2', slug: 'tag2', tagId: 'ID2' },
+  genres: [
+    {name: 'TAG1', slug: 'tag1', tagId: 'ID1'},
+    {name: 'TAG2', slug: 'tag2', tagId: 'ID2'},
+  ],
+  gamemodes: [
+    {name: 'MODE1', slug: 'mode1', tagId: 'ID3'},
+    {name: 'MODE1', slug: 'mode2', tagId: 'ID4'},
   ],
 };
 
@@ -31,9 +35,13 @@ const game2: Game = {
   dbGameId: 'DB_ID2',
   imageId: 'IMAGE_ID2',
   name: 'game2',
-  tags: [
-    { name: 'TAG2', slug: 'tag2', tagId: 'ID2' },
-    { name: 'TAG3', slug: 'tag3', tagId: 'ID3' },
+  genres: [
+    {name: 'TAG1', slug: 'tag1', tagId: 'ID1'},
+    {name: 'TAG2', slug: 'tag2', tagId: 'ID2'},
+  ],
+  gamemodes: [
+    {name: 'MODE1', slug: 'mode1', tagId: 'ID3'},
+    {name: 'MODE1', slug: 'mode2', tagId: 'ID4'},
   ],
 };
 

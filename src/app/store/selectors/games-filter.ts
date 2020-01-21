@@ -1,7 +1,7 @@
 import {Game} from '../model';
 
 const filterGame = (game: Game, filters: string[]): boolean => {
-  const filterTerms = game.tags.map((tag) => tag.name.toLocaleUpperCase());
+  const filterTerms = game.gamemodes.concat(game.genres).map((tag) => tag.name.toLocaleUpperCase());
   filterTerms.unshift(game.name.toLocaleUpperCase());
 
   for (const filter of filters) {

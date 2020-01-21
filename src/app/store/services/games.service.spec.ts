@@ -28,7 +28,7 @@ describe('GamesService', () => {
     gamesService.fetchGames(searchTerm);
 
     // then
-    verify(requestHelperMock.request(anything(), anything(), deepEqual({ term: searchTerm })))
+    verify(requestHelperMock.request(anything(), anything(), deepEqual(searchTerm)))
       .once();
   });
 
@@ -40,7 +40,7 @@ describe('GamesService', () => {
     gamesService.addGames(gameIds);
 
     // then
-    verify(requestHelperMock.request(anything(), anything(), deepEqual({ games: gameIds })))
+    verify(requestHelperMock.request(anything(), anything(), deepEqual(gameIds)))
       .once();
   });
 });

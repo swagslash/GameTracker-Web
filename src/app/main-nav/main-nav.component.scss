@@ -44,11 +44,15 @@ a:hover, a:active {
   margin-right: 10px;
 }
 
-footer{
-    padding-left: 50px;
-    background-color: gray;
-    color: white;
-    width: 100%;
-    position:fixed;
-    bottom:0;
+footer {
+  padding-left: 50px;
+  background-color: gray;
+  color: white;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.account-icon {
+  vertical-align: sub;
 }
