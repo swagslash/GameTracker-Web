@@ -1,0 +1,11 @@
+<!--<p>search-games works!</p>-->
+<mat-form-field>
+  <input #searchInput matInput placeholder="Search for games by title"/>
+</mat-form-field>
+<mat-spinner *ngIf="loading$ | async"></mat-spinner>
+<mat-chip-list *ngIf="error$ | async as error; else elseElement">
+  <mat-chip color="accent" selected>An error occurred: {{ error["statusText"] }}</mat-chip>
+</mat-chip-list>
+<ng-template #elseElement>
+  <app-games-list [gamesList]="games$ | async"></app-games-list>
+</ng-template>

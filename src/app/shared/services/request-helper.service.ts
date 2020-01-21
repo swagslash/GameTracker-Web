@@ -20,7 +20,7 @@ export class RequestHelperService {
         return this.post(requestUrl, payload);
     }
 
-    return throwError(`Unkown HttpMethod ${method} for request ${requestUrl} with payload ${payload}`);
+    return throwError(`Unknown HttpMethod ${method} for request ${requestUrl} with payload ${payload}`);
   }
 
   private get<R>(requestUrl: string): Observable<R> {
