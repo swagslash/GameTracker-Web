@@ -1,0 +1,18 @@
+<mat-form-field class="username-list">
+  <mat-chip-list #chipList aria-label="Username selection">
+    <mat-chip *ngFor="let username of usernames" [selectable]="selectable"
+              [removable]="removable" (removed)="remove(username)">
+      {{username.name}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="Usernames"
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field>
+<button mat-raised-button color="primary">Show common games</button>
+
+<!-- TODO make call and stuff -->
+<app-games-list [gamesList]=""></app-games-list>

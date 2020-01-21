@@ -1,6 +1,6 @@
-import {HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpParams} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {take, exhaustMap} from 'rxjs/operators';
+import {exhaustMap, take} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {AuthFacade} from '../store/facades/auth.facade';
 import {AuthResponseData} from '../store/model';
@@ -11,12 +11,10 @@ const mapUserToHttpEvent =
       return next.handle(request);
     }
 
-    const httpParams = new HttpParams();
-    httpParams.set('Authorization', `bearer ${userData.accessToken}`);
-
     const modifiedRequest = request.clone({
-      params: httpParams,
+      setHeaders: {Authorization: `Bearer ${userData.accessToken}`}
     });
+    console.log(modifiedRequest);
 
     return next.handle(modifiedRequest);
   };
