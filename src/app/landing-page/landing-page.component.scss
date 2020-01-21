@@ -1,6 +1,5 @@
 .header-text{
-   font-size: 100px;
-   //margin-top: -140px;
+   font-size: calc(2.5em + 1vw); //automatic font-size scaling
 }
 
 .gray-text{
@@ -8,6 +7,38 @@
 }
 
 p {
-  font-size: 30px;
+  font-size: calc(0.9em + 1vw); //automatic font-size scaling
 }
+
+.header {
+  justify-content: flex-end;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.direction-row{
+  flex-direction: row;
+}
+
+.direction-row-reverse{
+  flex-direction: row-reverse;
+}
+
+.item {
+  flex-basis: 30%;
+  margin-left: 30px;
+}
+
+//automatic image size scaling
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+
 
