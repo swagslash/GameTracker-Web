@@ -23,7 +23,8 @@ describe('GameComponent', () => {
       dbGameId: 'csgoid',
       imageId: 'co1vce',
       name: 'Counter-Strike Global Offensive',
-      tags: [{tagId: '1', name: 'Genre: Shooter', slug: 'shooter'}]
+      genres: [{tagId: '1', name: 'Genre: Shooter', slug: 'shooter'}],
+      gamemodes: []
     };
     fixture.detectChanges();
   });

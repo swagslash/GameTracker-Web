@@ -1,8 +1,8 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="over"
-      [opened]="false">
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="over"
+               [opened]="false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="games">Games</a>
@@ -27,10 +27,16 @@
       <a mat-button routerLink='games/search' i18n>Search</a>
       <a mat-button routerLink='games/common' i18n>Common</a>
       <span class="fill-remaining-space"></span>
-      <a mat-button class="right-text-padding" routerLink="/auth" i18n>
-        <mat-icon aria-hidden="false" aria-label="Example home icon">double_arrow</mat-icon>
-        Log In</a>
-      <a mat-button class="right-text-padding" routerLink="/auth" i18n>Sign Up</a>
+      <div *ngIf="user$ | async as user; else loginSignupButtons">
+        <mat-icon class="account-icon" aria-hidden="false" aria-label="user">account_circle</mat-icon>
+        {{user.username}}
+      </div>
+      <ng-template #loginSignupButtons>
+        <a mat-button class="right-text-padding" routerLink="/auth" i18n>
+          <mat-icon aria-hidden="false" aria-label="Login icon">double_arrow</mat-icon>
+          Log In</a>
+        <a mat-button class="right-text-padding" routerLink="/auth" i18n>Sign Up</a>
+      </ng-template>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>

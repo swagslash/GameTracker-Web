@@ -18,10 +18,10 @@ export class GamesService {
   }
 
   fetchGames(searchTerm: string): Observable<Array<Game>> {
-    return this.requestHelper.request(HttpMethod.POST, FETCH_GAMES_PATH, { term: searchTerm });
+    return this.requestHelper.request(HttpMethod.POST, FETCH_GAMES_PATH, searchTerm);
   }
 
   addGames(gameIds: string[]): Observable<Array<Game>> {
-    return this.requestHelper.request(HttpMethod.POST, ADD_GAMES_PATH, { games: gameIds });
+    return this.requestHelper.request(HttpMethod.POST, ADD_GAMES_PATH, gameIds);
   }
 }

@@ -1,6 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CommonGamesComponent} from './common-games.component';
+import {MatCardModule, MatChipsModule, MatFormFieldModule, MatIconModule} from '@angular/material';
+import {GamesListComponent} from '../games-list/games-list.component';
+import {GameComponent} from '../game/game.component';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('CommonGamesComponent', () => {
   let component: CommonGamesComponent;
@@ -8,7 +12,8 @@ describe('CommonGamesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CommonGamesComponent]
+      declarations: [CommonGamesComponent, GamesListComponent, GameComponent],
+      imports: [MatChipsModule, MatIconModule, MatFormFieldModule, MatCardModule, NoopAnimationsModule]
     })
       .compileComponents();
   }));

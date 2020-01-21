@@ -25,7 +25,7 @@ export class SearchGamesComponent implements AfterViewInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$),
         filter(Boolean),
-        debounceTime(150),
+        debounceTime(500),
         distinctUntilChanged(),
         tap(async (event: KeyboardEvent) => {
           console.log(`The input value is ${this.input.nativeElement.value}`);

@@ -15,7 +15,11 @@ export class GameComponent implements OnInit {
     const imgPathPrefix = 'https://images.igdb.com/igdb/image/upload/t_cover_big/';
     const imgPathSuffix = '.jpg';
 
-    this.imgSrc = `${imgPathPrefix}${this.game.imageId}${imgPathSuffix}`;
+    if (this.game.imageId) {
+      this.imgSrc = `${imgPathPrefix}${this.game.imageId}${imgPathSuffix}`;
+    } else {
+      this.imgSrc = 'http://vodacom-cd-games.mondiamedia.com/assets/rich/placeholder_games_cover.png';
+    }
   }
 
 }
