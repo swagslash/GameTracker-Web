@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Game} from '../../store/model';
 
 @Component({
@@ -10,4 +10,10 @@ export class GamesListComponent {
 
   @Input() pageTitle: string;
   @Input() gamesList: Game[];
+  @Input() showAdd = false;
+  @Output() addGame = new EventEmitter<Game>();
+
+  onAddGame(game: Game): void {
+    this.addGame.emit(game);
+  }
 }

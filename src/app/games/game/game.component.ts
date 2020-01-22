@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Game} from '../../store/model';
 
 @Component({
@@ -8,8 +8,11 @@ import {Game} from '../../store/model';
 })
 export class GameComponent implements OnInit {
 
+  @Input() public showAdd = false;
   @Input() public game: Game;
   private imgSrc: string;
+
+  @Output() readonly addGamesEvent = new EventEmitter<Game>();
 
   ngOnInit(): void {
     const imgPathPrefix = 'https://images.igdb.com/igdb/image/upload/t_cover_big/';
@@ -22,4 +25,8 @@ export class GameComponent implements OnInit {
     }
   }
 
+  onAddGamesClick() {
+    this.addGamesEvent.emit(this.game);
+
+  }
 }
