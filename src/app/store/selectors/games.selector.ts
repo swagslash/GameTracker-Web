@@ -27,6 +27,26 @@ export const userGamesError = createSelector(
   (state: GamesState) => state.userGames.error,
 );
 
+export const commonGames = createSelector(
+  getGamesState,
+  (state: GamesState) => state.commonGames.games,
+);
+
+export const otherUsers = createSelector(
+  getGamesState,
+  (state: GamesState) => state.commonGames.otherUsers,
+);
+
+export const commonGamesLoading = createSelector(
+  getGamesState,
+  (state: GamesState) => state.commonGames.loading,
+);
+
+export const commonGamesError = createSelector(
+  getGamesState,
+  (state: GamesState) => state.commonGames.error,
+);
+
 export const searchTerm = createSelector(
   getGamesState,
   (state: GamesState) => state.fetchGames.searchTerm,

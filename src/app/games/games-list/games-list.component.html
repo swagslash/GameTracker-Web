@@ -1,5 +1,11 @@
 <h2>{{pageTitle}}</h2>
-<main class="grid">
+
+<main class="grid"
+*ngIf="gamesList?.length > 0; else noGames">
   <app-game *ngFor="let game of gamesList" [game]="game" [showAdd]="showAdd" (addGamesEvent)="onAddGame($event)">
   </app-game>
 </main>
+
+<ng-template #noGames>
+  <h3>No games found.</h3>
+</ng-template>

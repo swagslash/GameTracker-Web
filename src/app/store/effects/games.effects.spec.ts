@@ -146,7 +146,7 @@ describe('GamesEffects', () => {
         .pipe(take(1))
         .subscribe(() => {
           verify(router.navigate(deepEqual(['/games'])))
-            .once();
+            .never();
           done();
         });
     });
