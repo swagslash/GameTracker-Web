@@ -33,7 +33,6 @@ describe('GamesEffects', () => {
       actions$,
       instance(store),
       instance(gamesService),
-      instance(router),
     );
   });
 
