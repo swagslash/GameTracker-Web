@@ -6,12 +6,14 @@ import {instance, mock, when} from 'ts-mockito';
 import {AuthFacade} from '../../store/facades/auth.facade';
 import {EMPTY} from 'rxjs';
 import {GamesFacade} from '../../store/facades/games.facade';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 const authFacade = mock(AuthFacade);
 when(authFacade.authenticatedUser$).thenReturn(EMPTY);
 
 const gamesFacade = mock(GamesFacade);
 when(gamesFacade.userGames$).thenReturn(EMPTY);
+when(gamesFacade.userGamesFilter$).thenReturn(EMPTY);
 
 describe('GamesPageComponent', () => {
   let component: GamesPageComponent;
@@ -21,7 +23,8 @@ describe('GamesPageComponent', () => {
     TestBed.configureTestingModule({
       declarations: [],
       imports: [
-        GamesModule
+        GamesModule,
+        NoopAnimationsModule,
       ],
       providers: [
         {provide: AuthFacade, useFactory: () => instance(authFacade)},

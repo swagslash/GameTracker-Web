@@ -13,6 +13,7 @@ export class SearchGamesComponent {
   readonly error$ = this.gamesFacade.fetchGamesError$;
   readonly loading$ = this.gamesFacade.fetchGamesLoading$;
   readonly games$ = this.gamesFacade.fetchedGames$;
+  readonly searchTerm$ = this.gamesFacade.searchTerm$;
 
   constructor(private readonly gamesFacade: GamesFacade) {
   }

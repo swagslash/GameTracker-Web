@@ -1,7 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="over"
                [opened]="false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
@@ -21,15 +20,19 @@
         *ngIf="false">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <img src="assets/logo.png" alt="Logo" class="logo">
+      <img src="assets/logo.png" alt="Logo" class="logo" routerLink="/">
       <span class="appName">GameTracker</span>
-      <a mat-button routerLink='games' i18n>My Games</a>
-      <a mat-button routerLink='games/search' i18n>Search</a>
-      <a mat-button routerLink='games/common' i18n>Common</a>
+      <ng-container *ngIf="(user$ | async) !== undefined">
+        <a mat-button routerLink='games' i18n>My Games</a>
+        <a mat-button routerLink='games/search' i18n>Search</a>
+        <a mat-button routerLink='games/common' i18n>Common</a>
+      </ng-container>
       <span class="fill-remaining-space"></span>
       <div *ngIf="user$ | async as user; else loginSignupButtons">
         <mat-icon class="account-icon" aria-hidden="false" aria-label="user">account_circle</mat-icon>
         {{user.username}}
+
+        <button mat-button class="right-text-padding" (click)="onLogout()">Logout</button>
       </div>
       <ng-template #loginSignupButtons>
         <a mat-button class="right-text-padding" routerLink="/auth" i18n>

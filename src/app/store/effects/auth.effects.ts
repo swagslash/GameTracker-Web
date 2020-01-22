@@ -115,6 +115,8 @@ export class AuthEffects {
 
   private handleLogout(): void {
     this.localStorage.removeItem(AUTH_DATA_KEY);
+
+    void this.router.navigate(['/auth']);
   }
 
   private autoLogout(expiresIn: number): void {

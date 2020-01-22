@@ -127,8 +127,8 @@ const gamesReducer = createReducer(
       games, // TODO Could be improved by only adding new added games
     },
     fetchGames: {
-      searchTerm: '',
-      games: undefined,
+      ...state.fetchGames,
+      // games: undefined,
       loading: false,
       error: undefined,
     },

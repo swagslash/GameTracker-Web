@@ -14,7 +14,6 @@ const mapUserToHttpEvent =
     const modifiedRequest = request.clone({
       setHeaders: {Authorization: `Bearer ${userData.accessToken}`}
     });
-    console.log(modifiedRequest);
 
     return next.handle(modifiedRequest);
   };

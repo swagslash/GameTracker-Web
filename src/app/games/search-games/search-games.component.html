@@ -1,8 +1,8 @@
 <!--<p>search-games works!</p>-->
 <mat-form-field>
-  <input #searchInput matInput placeholder="Search for games by title"/>
+  <input #searchInput matInput placeholder="Search for games by title" [value]="searchTerm$ | async"/>
 </mat-form-field>
-<button mat-button (click)="searchGames()">Search</button>
+<button mat-raised-button (click)="searchGames()" [disabled]="loading$ | async" color="primary">Search</button>
 <mat-spinner *ngIf="loading$ | async"></mat-spinner>
 <mat-chip-list *ngIf="error$ | async as error; else elseElement">
   <mat-chip color="accent" selected>An error occurred: {{ error["statusText"] }}</mat-chip>

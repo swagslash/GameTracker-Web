@@ -1,16 +1,18 @@
 import {Game} from '../model';
 
 const filterGame = (game: Game, filters: string[]): boolean => {
-  const filterTerms = game.gamemodes.concat(game.genres).map((tag) => tag.name.toLocaleUpperCase());
-  filterTerms.unshift(game.name.toLocaleUpperCase());
+  const gameTerms = game.gamemodes.concat(game.genres).map((tag) => tag.name.toLocaleUpperCase());
+  gameTerms.unshift(game.name.toLocaleUpperCase());
 
   for (const filter of filters) {
-    if (!filterTerms.includes(filter)) {
-      return false;
+    for (const gameTerm of gameTerms) {
+      if (gameTerm.includes(filter)) {
+        return true;
+      }
     }
   }
 
-  return true;
+  return false;
 };
 
 export const filterGames = (games: Game[], filters: string[]): Game[] => {

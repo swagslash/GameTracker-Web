@@ -1,6 +1,6 @@
-<div *ngIf="authenticationError$ | async as authError">
-  <span i18n>{{ authError }}</span>
-</div>
+<mat-chip-list *ngIf="authenticationError$ | async as error">
+  <mat-chip color="accent" selected>An error occurred: {{ error["statusText"] }}</mat-chip>
+</mat-chip-list>
 
 <app-login
   *ngIf="isLoginMode"

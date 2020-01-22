@@ -7,10 +7,10 @@ import {
   fetchGamesLoading,
   searchTerm,
   userGames,
-  userGamesError,
+  userGamesError, userGamesFilter,
   userGamesLoading
 } from '../selectors/games.selector';
-import {addGames, fetchGames, loadUserGames, unload} from '../actions/games.actions';
+import {addGames, fetchGames, filterUserGames, loadUserGames, unload} from '../actions/games.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +20,7 @@ export class GamesFacade {
   userGames$ = this.store.pipe(select(userGames));
   userGamesLoading$ = this.store.pipe(select(userGamesLoading));
   userGamesError$ = this.store.pipe(select(userGamesError));
+  userGamesFilter$ = this.store.pipe(select(userGamesFilter));
 
   searchTerm$ = this.store.pipe(select(searchTerm));
   fetchedGames$ = this.store.pipe(select(fetchedGames));
@@ -27,6 +28,10 @@ export class GamesFacade {
   fetchGamesError$ = this.store.pipe(select(fetchGamesError));
 
   constructor(private readonly store: Store<State>) {
+  }
+
+  filterGames(filters: string[]): void {
+    this.store.dispatch(filterUserGames({ filters }));
   }
 
   loadUserGames(): void {

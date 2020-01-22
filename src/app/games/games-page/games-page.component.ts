@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {GamesFacade} from 'src/app/store/facades/games.facade';
-import {take} from 'rxjs/operators';
 import {AuthFacade} from '../../store/facades/auth.facade';
 import {Game} from '../../store/model';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-games-page',
@@ -11,18 +11,27 @@ import {Game} from '../../store/model';
 })
 export class GamesPageComponent implements OnInit {
 
-  constructor(private readonly gamesFacade: GamesFacade,
-              private readonly userFacade: AuthFacade) {
-  }
+  readonly games$ = this.gamesFacade.userGames$;
+  readonly filter$ = this.gamesFacade.userGamesFilter$
+    .pipe(
+      map((terms: string[]) => {
+        return terms.length !== 0 ? terms[0] : '';
+      }),
+    );
 
-  private gamesList: Game[];
+  @ViewChild('filterInput', {static: false}) input: ElementRef;
+
+  constructor(private readonly gamesFacade: GamesFacade) {
+  }
 
   ngOnInit() {
-    this.userFacade.authenticatedUser$.pipe(take(1)).subscribe((user) => {
-      this.gamesFacade.loadUserGames();
-    });
-
-    // TODO remove this and set actual user games
+    this.gamesFacade.loadUserGames();
   }
 
+  filterGames() {
+    const filterValue = this.input.nativeElement.value;
+
+
+    this.gamesFacade.filterGames(filterValue === '' ? [] : [filterValue]);
+  }
 }
