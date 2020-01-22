@@ -1,5 +1,6 @@
 import {Routes} from '@angular/router';
 import {NotFoundComponent} from './not-found/not-found.component';
+import {AuthGuard} from './auth';
 
 export const APP_ROUTES: Routes = [
   {
@@ -14,6 +15,7 @@ export const APP_ROUTES: Routes = [
   {
     path: 'games',
     loadChildren: () => import('./games/games.module').then(module => module.GamesModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'auth',

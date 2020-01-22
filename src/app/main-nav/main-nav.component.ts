@@ -22,4 +22,7 @@ export class MainNavComponent {
   constructor(private breakpointObserver: BreakpointObserver, private authFacade: AuthFacade) {
   }
 
+  onLogout() {
+    this.authFacade.logout();
+  }
 }

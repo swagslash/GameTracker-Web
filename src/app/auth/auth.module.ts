@@ -11,18 +11,20 @@ import {SocialLoginComponent} from './social-login/social-login.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
-  imports: [
-    AuthRoutingModule,
-    CommonModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatIconModule,
-  ],
+    imports: [
+        AuthRoutingModule,
+        CommonModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatIconModule,
+        MatChipsModule,
+    ],
   declarations: [
     AuthComponent,
     LoginComponent,

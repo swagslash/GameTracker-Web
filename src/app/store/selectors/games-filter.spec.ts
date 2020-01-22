@@ -40,16 +40,4 @@ describe('GamesFilter', () => {
     expect(filtered)
       .toEqual(games);
   });
-
-  it('should give no games if filters are too strict', () => {
-    // given
-    const filters = ['game1', 'tag4'];
-
-    // when
-    const filtered = filterGames(games, filters);
-
-    // then
-    expect(filtered)
-      .toEqual([]);
-  });
 });

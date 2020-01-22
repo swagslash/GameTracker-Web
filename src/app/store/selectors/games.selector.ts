@@ -12,6 +12,11 @@ export const userGames = createSelector(
   },
 );
 
+export const userGamesFilter = createSelector(
+  getGamesState,
+  (state: GamesState) => state.userGames.filters,
+);
+
 export const userGamesLoading = createSelector(
   getGamesState,
   (state: GamesState) => state.userGames.loading,

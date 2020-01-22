@@ -1,2 +1,6 @@
 <h1>Games</h1>
-<app-games-list pageTitle="Your Games" [gamesList]="gamesList"></app-games-list>
+<mat-form-field>
+  <input #filterInput matInput placeholder="Filter games" [value]="filter$ | async"/>
+</mat-form-field>
+<button mat-raised-button (click)="filterGames()" color="primary">Filter</button>
+<app-games-list pageTitle="Your Games" [gamesList]="games$ | async"></app-games-list>

@@ -4,6 +4,7 @@ import {AuthComponent} from './auth.component';
 import {Component} from '@angular/core';
 import {instance, mock} from 'ts-mockito';
 import {AuthFacade} from '../store/facades/auth.facade';
+import {MatChipsModule} from '@angular/material/chips';
 
 @Component({selector: 'app-login', template: ''})
 class LoginMockComponent {
@@ -25,6 +26,9 @@ describe('AuthComponent', () => {
         AuthComponent,
         LoginMockComponent,
         SignUpMockComponent,
+      ],
+      imports: [
+        MatChipsModule,
       ],
       providers: [
         {provide: AuthFacade, useFactory: () => instance(authFacade)},
