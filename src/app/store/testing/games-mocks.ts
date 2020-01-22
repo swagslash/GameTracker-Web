@@ -1,4 +1,4 @@
-import {FetchGamesState, GamesState, UserGamesState} from '../reducers/games.reducer';
+import {CommonGamesState, FetchGamesState, GamesState, UserGamesState} from '../reducers/games.reducer';
 import {Game} from '../model';
 
 const initialUserGamesState: UserGamesState = {
@@ -11,6 +11,13 @@ const initialUserGamesState: UserGamesState = {
 const initialFetchGamesState: FetchGamesState = {
   searchTerm: '',
   games: undefined,
+  loading: false,
+  error: undefined,
+};
+
+export const initialCommonGamesState: CommonGamesState = {
+  otherUsers: [],
+  games: [],
   loading: false,
   error: undefined,
 };
@@ -50,6 +57,7 @@ const games: Array<Game> = [game1, game2];
 const initialState: GamesState = {
   userGames: initialUserGamesState,
   fetchGames: initialFetchGamesState,
+  commonGames: initialCommonGamesState,
 };
 
 const userGamesState: GamesState = {

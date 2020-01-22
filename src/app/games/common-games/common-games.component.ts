@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
+import {GamesFacade} from '../../store/facades/games.facade';
+import {filter, map, take} from 'rxjs/operators';
 
 export interface Username {
   name: string;
@@ -13,24 +15,30 @@ export interface Username {
 })
 export class CommonGamesComponent {
 
-  visible = true;
+  commonGames$ = this.facade.commonGames$;
+
+  constructor(private readonly facade: GamesFacade) {
+    // ugly af
+    this.facade.otherUsers$.pipe(
+      take(1),
+      map((usernames) => usernames.join(';')),
+      filter((usernames) => usernames !== ''),
+    ).subscribe((names) => this.usernames.push(names));
+  }
+
   selectable = true;
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  usernames: Username[] = [
-    {name: 'Lemon'},
-    {name: 'Lime'},
-    {name: 'Apple'},
-  ];
+  readonly usernames: string[] = [];
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
+    // Add our user
     if ((value || '').trim()) {
-      this.usernames.push({name: value.trim()});
+      this.usernames.push(value.trim());
     }
 
     // Reset the input value
@@ -39,7 +47,7 @@ export class CommonGamesComponent {
     }
   }
 
-  remove(username: Username): void {
+  remove(username: string): void {
     const index = this.usernames.indexOf(username);
 
     if (index >= 0) {
@@ -47,4 +55,7 @@ export class CommonGamesComponent {
     }
   }
 
+  getCommonGames() {
+    this.facade.getCommonGames(this.usernames);
+  }
 }

@@ -9,22 +9,20 @@ import {
   addGamesSuccess,
   fetchGames,
   fetchGamesError,
-  fetchGamesSuccess,
+  fetchGamesSuccess, getCommonGames, getCommonGamesError, getCommonGamesSuccess,
   loadUserGames,
   loadUserGamesError,
   loadUserGamesSuccess
 } from '../actions/games.actions';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {EMPTY, of} from 'rxjs';
-import {Router} from '@angular/router';
 
 @Injectable()
 export class GamesEffects {
 
   constructor(private readonly actions$: Actions,
               private readonly store: Store<GamesState>,
-              private readonly gamesService: GamesService,
-              private readonly router: Router) {
+              private readonly gamesService: GamesService) {
   }
 
   loadUserGames$ = createEffect(() =>
@@ -63,11 +61,23 @@ export class GamesEffects {
       }),
     ));
 
+  getCommonGames$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getCommonGames),
+      switchMap(({ otherUsers }) => {
+        return this.gamesService.getCommonGames(otherUsers)
+          .pipe(
+            map((commonGames) => getCommonGamesSuccess({ commonGames })),
+            catchError((error) => of(getCommonGamesError({ error }))),
+          );
+      }),
+    ));
+
   addGamesSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(addGamesSuccess),
       tap(() => {
-        void this.router.navigate(['/games']);
+        // void this.router.navigate(['/games']);
       }),
       map(() => EMPTY),
     ), {

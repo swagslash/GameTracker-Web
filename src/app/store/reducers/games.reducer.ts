@@ -8,6 +8,9 @@ import {
   fetchGamesError,
   fetchGamesSuccess,
   filterUserGames,
+  getCommonGames,
+  getCommonGamesError,
+  getCommonGamesSuccess,
   loadUserGames,
   loadUserGamesError,
   loadUserGamesSuccess,
@@ -17,6 +20,7 @@ import {
 export interface GamesState {
   userGames: UserGamesState;
   fetchGames: FetchGamesState;
+  commonGames?: CommonGamesState;
 }
 
 export interface UserGamesState {
@@ -28,6 +32,13 @@ export interface UserGamesState {
 
 export interface FetchGamesState {
   searchTerm: string;
+  games: Game[] | undefined;
+  loading: boolean;
+  error: string | undefined;
+}
+
+export interface CommonGamesState {
+  otherUsers: string[];
   games: Game[] | undefined;
   loading: boolean;
   error: string | undefined;
@@ -47,9 +58,17 @@ export const initialFetchGamesState: FetchGamesState = {
   error: undefined,
 };
 
+export const initialCommonGamesState: CommonGamesState = {
+  otherUsers: [],
+  games: [],
+  loading: false,
+  error: undefined,
+};
+
 export const initialGamesState: GamesState = {
   userGames: initialUserGamesState,
   fetchGames: initialFetchGamesState,
+  commonGames: initialCommonGamesState,
 };
 
 const gamesReducer = createReducer(
@@ -137,6 +156,31 @@ const gamesReducer = createReducer(
     ...state,
     fetchGames: {
       ...state.fetchGames,
+      loading: false,
+      error,
+    }
+  })),
+  on(getCommonGames, (state, { otherUsers }) => ({
+    ...state,
+    commonGames: {
+      ...state.commonGames,
+      otherUsers,
+      loading: true,
+    },
+  })),
+  on(getCommonGamesSuccess, (state, { commonGames}) => ({
+    ...state,
+    commonGames: {
+      ...state.commonGames,
+      loading: false,
+      error: '',
+      games: commonGames,
+    }
+  })),
+  on(getCommonGamesError, (state, { error }) => ({
+    ...state,
+    commonGames: {
+      ...state.commonGames,
       loading: false,
       error,
     }

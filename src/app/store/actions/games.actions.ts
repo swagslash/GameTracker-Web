@@ -1,6 +1,21 @@
 import {createAction, props} from '@ngrx/store';
 import {Game} from '../model';
 
+export const getCommonGames = createAction(
+  '[Games API] Get common games',
+  props<{ otherUsers: string[] }>(),
+);
+
+export const getCommonGamesSuccess = createAction(
+  '[Games API] Get common games success',
+  props<{ commonGames: Array<Game> }>(),
+);
+
+export const getCommonGamesError = createAction(
+  '[Games API] Get common games error',
+  props<{ error: string }>(),
+);
+
 export const loadUserGames = createAction(
   '[Games API] Load user games',
 );

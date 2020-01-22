@@ -2,7 +2,7 @@
   <mat-chip-list #chipList aria-label="Username selection">
     <mat-chip *ngFor="let username of usernames" [selectable]="selectable"
               [removable]="removable" (removed)="remove(username)">
-      {{username.name}}
+      {{username}}
       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
     </mat-chip>
     <input placeholder="Usernames"
@@ -11,8 +11,8 @@
            [matChipInputAddOnBlur]="addOnBlur"
            (matChipInputTokenEnd)="add($event)">
   </mat-chip-list>
+  <button mat-raised-button color="primary" (click)="getCommonGames()" style="float: right">Show common games</button>
 </mat-form-field>
-<button mat-raised-button color="primary">Show common games</button>
 
 <!-- TODO make call and stuff -->
-<app-games-list [gamesList]=""></app-games-list>
+<app-games-list [gamesList]="commonGames$ | async"></app-games-list>
