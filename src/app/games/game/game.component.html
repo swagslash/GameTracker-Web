@@ -11,6 +11,8 @@
       <mat-chip-list>
         <mat-chip *ngFor="let tag of game.gamemodes">{{tag.name}}</mat-chip>
       </mat-chip-list>
+
+      <button *ngIf="showAdd" mat-button (click)="onAddGamesClick()">Add to library</button>
     </div>
   </mat-card-content>
 </mat-card>

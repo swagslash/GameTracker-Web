@@ -1,16 +1,14 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
-import {debounceTime, distinctUntilChanged, filter, takeUntil, tap} from 'rxjs/operators';
-import {fromEvent, Subject} from 'rxjs';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {GamesFacade} from '../../store/facades/games.facade';
+import {Game} from '../../store/model';
 
 @Component({
   selector: 'app-search-games',
   templateUrl: './search-games.component.html',
   styleUrls: ['./search-games.component.scss']
 })
-export class SearchGamesComponent implements AfterViewInit, OnDestroy {
+export class SearchGamesComponent {
 
-  readonly destroy$ = new Subject<void>();
   @ViewChild('searchInput', {static: false}) input: ElementRef;
   readonly error$ = this.gamesFacade.fetchGamesError$;
   readonly loading$ = this.gamesFacade.fetchGamesLoading$;
@@ -19,27 +17,11 @@ export class SearchGamesComponent implements AfterViewInit, OnDestroy {
   constructor(private readonly gamesFacade: GamesFacade) {
   }
 
-  ngAfterViewInit() {
-    // server-side search
-    fromEvent(this.input.nativeElement, 'keyup')
-      .pipe(
-        takeUntil(this.destroy$),
-        filter(Boolean),
-        debounceTime(500),
-        distinctUntilChanged(),
-        tap(async (event: KeyboardEvent) => {
-          console.log(`The input value is ${this.input.nativeElement.value}`);
-        })
-      )
-      .subscribe(() => this.gamesFacade.fetchGames(this.input.nativeElement.value));
+  onAddGame(game: Game) {
+    this.gamesFacade.addGames([game.dbGameId]);
   }
 
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
-  onSeachInputChange($event: Event) {
-
+  searchGames() {
+    this.gamesFacade.fetchGames(this.input.nativeElement.value);
   }
 }

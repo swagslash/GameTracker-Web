@@ -1,4 +1,5 @@
 <h2>{{pageTitle}}</h2>
 <main class="grid">
-  <app-game *ngFor="let game of gamesList" [game]="game"></app-game>
+  <app-game *ngFor="let game of gamesList" [game]="game" [showAdd]="showAdd" (addGamesEvent)="onAddGame($event)">
+  </app-game>
 </main>
