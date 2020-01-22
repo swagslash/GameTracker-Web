@@ -30,7 +30,7 @@ export class CommonGamesComponent {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  readonly usernames: string[] = [];
+  usernames: string[] = [];
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
@@ -38,7 +38,7 @@ export class CommonGamesComponent {
 
     // Add our user
     if ((value || '').trim()) {
-      this.usernames.push(value.trim());
+      this.usernames = this.usernames.concat(value.trim());
     }
 
     // Reset the input value
@@ -48,11 +48,7 @@ export class CommonGamesComponent {
   }
 
   remove(username: string): void {
-    const index = this.usernames.indexOf(username);
-
-    if (index >= 0) {
-      this.usernames.splice(index, 1);
-    }
+    this.usernames = this.usernames.filter((name) => name !== username);
   }
 
   getCommonGames() {
